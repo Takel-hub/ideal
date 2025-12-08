@@ -18,8 +18,8 @@ async function handleChat(message) {
     }
 
     try {
-        // Use the available Gemini 2.0 Flash model
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        // Use the stable Gemini 1.5 Flash model
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const systemPrompt = `
         Du är Hans Nilsson, en vänlig och kunnig solcellsexpert från Takel.se.
@@ -67,9 +67,9 @@ async function handleChat(message) {
         };
 
     } catch (error) {
-        console.error("A1 Error calling Gemini:", error);
+        console.error("A1 CRITICAL Error calling Gemini:", error.message, error);
         return {
-            response: "Oj, jag tappade tanken lite (API Error). Men jag vill gärna komma och titta på ditt tak! Ska vi boka in det?",
+            response: `Oj, jag tappade tanken lite. (Error: ${error.message || 'Unknown'})`,
             choices: ['Ja, boka hembesök']
         };
     }
