@@ -1,0 +1,281 @@
+[
+  {
+    "type": "quote_request",
+    "name": "Test Testsson",
+    "phone": "0701234567",
+    "email": "test@example.com",
+    "address": {
+      "street": "Storgatan 1",
+      "zip": "11122",
+      "city": "Stockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:37:58.872Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Test Testsson",
+    "phone": "0701234567",
+    "email": "test@example.com",
+    "address": {
+      "street": "Storgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:38:26.024Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Hans Nilsson",
+    "phone": "0708704233",
+    "email": "hans.nilsson@protonmail.com",
+    "address": {
+      "street": "Timmermansvägen 1",
+      "zip": "18534",
+      "city": "Vaxholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:42:57.109Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Hans Nilsson",
+    "phone": "0708704233",
+    "email": "hans.nilsson@protonmail.com",
+    "address": {
+      "street": "Timmermansvägen 1",
+      "zip": "18534",
+      "city": "Vaxholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:43:01.474Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Test Fix",
+    "phone": "0701234567",
+    "email": "fix@test.com",
+    "address": {
+      "street": "Fixgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:45:16.069Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Success Test",
+    "phone": "0701234567",
+    "email": "success@test.com",
+    "address": {
+      "street": "Successgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:51:28.455Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Success Test",
+    "phone": "0701234567",
+    "email": "success@test.com",
+    "address": {
+      "street": "Successgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:51:51.718Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Final Check",
+    "phone": "0701234567",
+    "email": "final@check.com",
+    "address": {
+      "street": "Checkgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:57:30.028Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Hans Nilsson",
+    "phone": "0708704233",
+    "email": "hans.nilsson@protonmail.com",
+    "address": {
+      "street": "Timmermansvägen 1",
+      "zip": "18534",
+      "city": "Vaxholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T06:59:34.594Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Calendar Fix",
+    "phone": "0701234567",
+    "email": "cal@fix.com",
+    "address": {
+      "street": "Calgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:04:48.537Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Cal Fix 2",
+    "phone": "0701234567",
+    "email": "cal2@fix.com",
+    "address": {
+      "street": "Calgatan 2",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:07:32.159Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Final Success",
+    "phone": "0701234567",
+    "email": "final@success.com",
+    "address": {
+      "street": "Successgatan 99",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:11:30.723Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Real Cal Test",
+    "phone": "0701234567",
+    "email": "real@test.com",
+    "address": {
+      "street": "Realgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:17:31.975Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Hans Nilsson",
+    "phone": "0708704233",
+    "email": "hans.nilsson@protonmail.com",
+    "address": {
+      "street": "Timmermansvägen 1",
+      "zip": "18534",
+      "city": "Vaxholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:22:57.071Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Optimized User",
+    "phone": "0701234567",
+    "email": "opt@test.com",
+    "address": {
+      "street": "Optgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:25:58.740Z"
+  },
+  {
+    "name": "Optimized User",
+    "address": "Optgatan 1, 11122 StockholmStockholm\nEmail: opt@test.com",
+    "phone": "",
+    "email": "unknown@example.com",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:26:39.510Z",
+    "startTime": "2025-11-27T12:00:00.000Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Email Test",
+    "phone": "0701234567",
+    "email": "email@test.com",
+    "address": {
+      "street": "Emailgatan 1",
+      "zip": "11122",
+      "city": "StockholmStockholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:29:23.779Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Hans Nilsson",
+    "phone": "0708704233",
+    "email": "hans.nilsson@protonmail.com",
+    "address": {
+      "street": "Timmermansvägen 1",
+      "zip": "18534",
+      "city": "Vaxholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:33:12.194Z"
+  },
+  {
+    "name": "Hans Nilsson",
+    "address": "Timmermansvägen 1, 18534 Vaxholm\nEmail: hans.nilsson@protonmail.com",
+    "phone": "",
+    "email": "unknown@example.com",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T07:33:39.465Z",
+    "startTime": "2025-12-01T12:00:00.000Z"
+  },
+  {
+    "type": "quote_request",
+    "name": "Hans Nilsson",
+    "phone": "0708704233",
+    "email": "hans.nilsson@protonmail.com",
+    "address": {
+      "street": "Timmermansvägen 1",
+      "zip": "18534",
+      "city": "Vaxholm"
+    },
+    "consumption": "T.ex. 15000",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T21:51:42.114Z"
+  },
+  {
+    "name": "Hans Nilsson",
+    "address": "Timmermansvägen 1, 18534 Vaxholm\nEmail: hans.nilsson@protonmail.com",
+    "phone": "",
+    "email": "unknown@example.com",
+    "gdprConsent": true,
+    "timestamp": "2025-11-27T21:52:07.193Z",
+    "startTime": "2025-12-02T13:00:00.000Z"
+  }
+]

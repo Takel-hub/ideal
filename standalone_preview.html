@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takel.se Preview</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF9900',
+                        secondary: '#2E7D32',
+                        background: '#FFFBF5',
+                        text: '#1A1A1A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body class="bg-background text-text font-sans">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Lucide Icons Component Wrapper
+        const Icon = ({ name, className, strokeWidth }) => {
+            if (name === 'Sun') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>;
+            if (name === 'Phone') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>;
+            if (name === 'ArrowRight') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>;
+            if (name === 'MapPin') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>;
+            if (name === 'ShieldCheck') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" /><path d="m9 12 2 2 4-4" /></svg>;
+            if (name === 'Wallet') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" /><path d="M3 5v14a2 2 0 0 0 2 2h16v-5" /><path d="M18 12a2 2 0 0 0 0 4h4v-4Z" /></svg>;
+            if (name === 'Map') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" /><line x1="9" x2="9" y1="3" y2="18" /><line x1="15" x2="15" y1="6" y2="21" /></svg>;
+            if (name === 'Users') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>;
+            if (name === 'FileCheck') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" /><polyline points="14 2 14 8 20 8" /><path d="m9 15 2 2 4-4" /></svg>;
+            if (name === 'Zap') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>;
+            if (name === 'CheckCircle2') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>;
+            if (name === 'Star') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>;
+            if (name === 'Award') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="8" r="7" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" /></svg>;
+            if (name === 'TrendingUp') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>;
+            if (name === 'Mail') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>;
+            if (name === 'MessageCircle') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" /></svg>;
+            if (name === 'X') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>;
+            if (name === 'Bot') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || 2} strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></svg>;
+            return null;
+        };
+
+        // --- Components ---
+
+        const Header = () => {
+            return (
+                <header className="w-full bg-white py-4 px-6 md:px-12 shadow-sm sticky top-0 z-50">
+                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div className="flex items-center gap-2">
+                            <Icon name="Sun" className="w-8 h-8 text-orange-600 animate-pulse" />
+                            <span className="text-2xl font-bold text-orange-600 tracking-tight">Takel.se</span>
+                        </div>
+                        <nav className="hidden md:flex items-center gap-8 font-medium text-orange-600">
+                            <a href="#om-oss" className="hover:text-orange-800 transition-colors">Om oss</a>
+                            <a href="#paket" className="hover:text-orange-800 transition-colors">Paket</a>
+                            <a href="#kontakt" className="hover:text-orange-800 transition-colors">Kontakt</a>
+                        </nav>
+                        <div className="flex flex-col md:flex-row items-center gap-4">
+                            <div className="flex items-center gap-2 text-orange-600 font-semibold">
+                                <Icon name="Phone" className="w-5 h-5 text-orange-600" />
+                                <span className="text-lg">08 - 37 30 30</span>
+                            </div>
+                            <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all transform hover:scale-105">
+                                Få gratis offert nu!
+                            </button>
+                        </div>
+                    </div>
+                </header>
+            );
+        };
+
+        const Hero = () => {
+            return (
+                <section className="relative bg-background pt-20 pb-32 px-6 md:px-12 overflow-hidden text-center">
+                    <div className="max-w-4xl mx-auto relative z-10">
+                        {/* Trust Badge */}
+                        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-2 rounded-full font-medium text-sm md:text-base mb-8">
+                            <Icon name="Star" className="w-4 h-4" />
+                            Över 100 nöjda kunder i Stockholm
+                            <Icon name="Star" className="w-4 h-4" />
+                        </div>
+
+                        {/* Headlines */}
+                        <h1 className="text-5xl md:text-7xl font-bold text-text leading-tight mb-6">
+                            Släpp lös solens kraft i <span>ditt hem!</span>
+                        </h1>
+
+                        <div className="space-y-4 mb-10">
+                            <p className="text-2xl md:text-3xl font-bold text-orange-600">
+                                Spara 10 000-30 000 kr/år <span className="text-gray-600 font-normal">på din elräkning</span>
+                            </p>
+                            <p className="text-gray-500 text-lg">
+                                Plus upp till 50% skattereduktion i Grönt Teknikavdrag
+                            </p>
+                        </div>
+
+                        {/* CTAs */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white text-lg font-bold py-4 px-8 rounded-lg shadow-lg transition-transform hover:-translate-y-1">
+                                Beräkna min besparing
+                            </button>
+
+                            <div className="flex items-center gap-4 w-full sm:w-auto">
+                                <div className="flex items-center justify-center gap-2 border-2 border-orange-200 bg-white px-6 py-4 rounded-lg w-full sm:w-auto">
+                                    <Icon name="Phone" className="w-4 h-4 text-orange-600" />
+                                    <span className="text-orange-600 font-bold">Ring 08-37 30 30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Stats = () => {
+            return (
+                <section className="py-12 bg-background">
+                    <div className="max-w-5xl mx-auto px-6 md:px-12">
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {/* Card 1 */}
+                            <div className="bg-white p-10 rounded-2xl shadow-sm border border-orange-100 text-center hover:shadow-md transition-shadow">
+                                <div className="w-16 h-16 mx-auto mb-6 text-orange-500">
+                                    <Icon name="Award" className="w-full h-full" strokeWidth={1} />
+                                </div>
+                                <h3 className="text-3xl font-bold text-orange-600 mb-2">30 års garanti</h3>
+                                <p className="text-gray-600">Branschens längsta garanti på paneler</p>
+                            </div>
+
+                            {/* Card 2 */}
+                            <div className="bg-white p-10 rounded-2xl shadow-sm border border-orange-100 text-center hover:shadow-md transition-shadow">
+                                <div className="w-16 h-16 mx-auto mb-6 text-orange-500">
+                                    <Icon name="TrendingUp" className="w-full h-full" strokeWidth={1} />
+                                </div>
+                                <h3 className="text-3xl font-bold text-orange-600 mb-2">8-12 år payback</h3>
+                                <p className="text-gray-600">Snabb återbetalningstid tack vare Grönt Teknikavdrag</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Features = () => {
+            const features = [
+                {
+                    icon: 'Zap',
+                    title: "Supersnabb installation",
+                    desc: "Installation på 1-2 dagar"
+                },
+                {
+                    icon: 'Award',
+                    title: "Certifierade installatörer",
+                    desc: "Alla våra installatörer är elinstallatörer med F-skattsedel"
+                },
+                {
+                    icon: 'TrendingUp',
+                    title: "Bäst priser i Stockholm",
+                    desc: "Garanterat konkurrenskraftiga priser"
+                },
+                {
+                    icon: 'Sun',
+                    title: "Premium utrustning",
+                    desc: "Vi använder endast paneler och växelriktare från ledande tillverkare"
+                }
+            ];
+
+            return (
+                <section className="py-20 bg-background" id="om-oss">
+                    <div className="max-w-5xl mx-auto px-6 md:px-12">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Varför välja Takel.se?</h2>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {features.map((feature, index) => (
+                                <div key={index} className="bg-white p-8 rounded-xl border border-orange-100 hover:border-orange-300 transition-colors flex flex-col items-start">
+                                    <div className="w-10 h-10 mb-4 text-orange-500">
+                                        <Icon name={feature.icon} className="w-full h-full" strokeWidth={1.5} />
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-2 text-orange-800">{feature.title}</h3>
+                                    <p className="text-gray-600 text-sm">{feature.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Packages = ({ onBooking }) => {
+            return (
+                <section className="py-20 bg-background" id="paket">
+                    <div className="max-w-7xl mx-auto px-6 md:px-12">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Våra solcellspaket</h2>
+                            <p className="text-gray-500">Alla priser är efter Grönt Teknikavdrag (50% skattereduktion)</p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8 items-start">
+                            {/* Start Package */}
+                            <div className="bg-white rounded-2xl p-8 border border-orange-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h3 className="text-xl font-bold text-orange-800 mb-2">Start</h3>
+                                <div className="text-4xl font-bold text-text mb-2">6 kW</div>
+                                <div className="text-3xl font-bold text-orange-500 mb-1">79 900 kr</div>
+                                <p className="text-xs text-gray-400 mb-4">efter Grönt Teknikavdrag</p>
+                                <p className="text-sm font-bold text-orange-700 mb-8">Spara 8-10 000 kr/år</p>
+
+                                <ul className="space-y-3 mb-8 text-sm text-gray-600">
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> 15 paneler</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> Installation ingår</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> 25 års garanti</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> Uppföljning via app</li>
+                                </ul>
+
+                                <button
+                                    onClick={() => onBooking("Start")}
+                                    className="w-full py-3 border-2 border-orange-200 text-orange-700 font-bold rounded-lg hover:bg-orange-50 transition-colors"
+                                >
+                                    Välj Start
+                                </button>
+                            </div>
+
+                            {/* Familj Package (Highlighted) */}
+                            <div className="bg-white rounded-2xl p-8 border-2 border-orange-500 shadow-xl relative transform md:-translate-y-4">
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+                                    Mest populär <Icon name="Star" className="w-3 h-3" />
+                                </div>
+
+                                <h3 className="text-xl font-bold text-orange-800 mb-2">Familj</h3>
+                                <div className="text-4xl font-bold text-text mb-2">10 kW</div>
+                                <div className="text-3xl font-bold text-orange-500 mb-1">129 900 kr</div>
+                                <p className="text-xs text-gray-400 mb-4">efter Grönt Teknikavdrag</p>
+                                <p className="text-sm font-bold text-orange-700 mb-8">Spara 12-18 000 kr/år</p>
+
+                                <ul className="space-y-3 mb-8 text-sm text-gray-600">
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> 25 paneler</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> Installation ingår</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> 30 års garanti</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> Energioptimering</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> Prioriterad support</li>
+                                </ul>
+
+                                <button
+                                    onClick={() => onBooking("Familj")}
+                                    className="w-full py-3 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 transition-colors shadow-md"
+                                >
+                                    Välj Familj
+                                </button>
+                            </div>
+
+                            {/* Premium Package */}
+                            <div className="bg-white rounded-2xl p-8 border border-orange-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h3 className="text-xl font-bold text-orange-800 mb-2">Premium</h3>
+                                <div className="text-4xl font-bold text-text mb-2">15 kW</div>
+                                <div className="text-3xl font-bold text-orange-500 mb-1">149 900 kr</div>
+                                <p className="text-xs text-gray-400 mb-4">efter Grönt Teknikavdrag</p>
+                                <p className="text-sm font-bold text-orange-700 mb-8">Spara 18-30 000 kr/år</p>
+
+                                <ul className="space-y-3 mb-8 text-sm text-gray-600">
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> 38 paneler</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> Installation ingår</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> 30 års garanti</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> Energilagring tillval</li>
+                                    <li className="flex items-center gap-2"><Icon name="Zap" className="w-4 h-4 text-orange-400" /> 24/7 support</li>
+                                </ul>
+
+                                <button
+                                    onClick={() => onBooking("Premium")}
+                                    className="w-full py-3 border-2 border-orange-200 text-orange-700 font-bold rounded-lg hover:bg-orange-50 transition-colors"
+                                >
+                                    Välj Premium
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const ContactForm = () => {
+            return (
+                <section className="py-20 bg-white" id="kontakt">
+                    <div className="max-w-3xl mx-auto px-6 md:px-12">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Få din gratis offert idag!</h2>
+                            <p className="text-gray-500">Svar inom 24 timmar - inga dolda avgifter</p>
+                        </div>
+
+                        <div className="bg-white p-8 rounded-2xl border border-orange-100 shadow-lg">
+                            <form className="space-y-6">
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-700">Namn *</label>
+                                        <input type="text" placeholder="Ditt namn" className="w-full p-3 rounded-lg border border-gray-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-700">Telefon *</label>
+                                        <input type="tel" placeholder="070-123 45 67" className="w-full p-3 rounded-lg border border-gray-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all" />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-gray-700">E-post *</label>
+                                    <input type="email" placeholder="din@epost.se" className="w-full p-3 rounded-lg border border-gray-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all" />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-gray-700">Adress i Stockholm *</label>
+                                    <input type="text" placeholder="Gatuadress och postnummer" className="w-full p-3 rounded-lg border border-gray-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all" />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-gray-700">Vad är din ungefärliga elförbrukning per år? (kWh)</label>
+                                    <select className="w-full p-3 rounded-lg border border-gray-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all bg-white">
+                                        <option>T.ex. 15000</option>
+                                        <option>Under 10 000</option>
+                                        <option>10 000 - 20 000</option>
+                                        <option>Över 20 000</option>
+                                    </select>
+                                </div>
+
+                                <button type="button" className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg shadow-md transition-colors text-lg mt-4">
+                                    Skicka offertförfrågan
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const ChatWidget = ({ isOpen, setIsOpen, messages, setMessages }) => {
+            const [inputValue, setInputValue] = React.useState('');
+            const [isTyping, setIsTyping] = React.useState(false);
+            const [bookingState, setBookingState] = React.useState('none');
+            const [bookingData, setBookingData] = React.useState({});
+            const [isBackendOnline, setIsBackendOnline] = React.useState(false);
+            const messagesEndRef = React.useRef(null);
+
+            const scrollToBottom = () => {
+                messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            };
+
+            React.useEffect(() => {
+                scrollToBottom();
+            }, [messages, isTyping]);
+
+            // Check Backend Status on Mount
+            React.useEffect(() => {
+                const checkStatus = async () => {
+                    try {
+                        const res = await fetch('http://localhost:3001/');
+                        if (res.ok) {
+                            setIsBackendOnline(true);
+                            console.log("✅ Backend is ONLINE");
+                        } else {
+                            setIsBackendOnline(false);
+                            console.warn("⚠️ Backend is reachable but returned error");
+                        }
+                    } catch (err) {
+                        setIsBackendOnline(false);
+                        console.warn("❌ Backend is OFFLINE (using simulation)");
+                    }
+                };
+                checkStatus();
+                // Poll every 10 seconds
+                const interval = setInterval(checkStatus, 10000);
+                return () => clearInterval(interval);
+            }, []);
+
+            const handleSend = () => {
+                if (!inputValue.trim()) return;
+                handleInteraction(inputValue);
+                setInputValue('');
+            };
+
+            const handleChoice = (choice) => {
+                handleInteraction(choice);
+            };
+
+            const handleInteraction = async (input) => {
+                // Add user message
+                const userMsg = { id: Date.now(), sender: 'user', text: input };
+                setMessages(prev => [...prev, userMsg]);
+                setIsTyping(true);
+
+                // Helper for Backend Calls
+                const callApi = async (endpoint, method = 'GET', body = null) => {
+                    console.log(`📡 Calling Backend: ${endpoint}`);
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+
+                    try {
+                        const res = await fetch(`http://localhost:3001/api${endpoint}`, {
+                            method,
+                            headers: { 'Content-Type': 'application/json' },
+                            body: body ? JSON.stringify(body) : null,
+                            signal: controller.signal
+                        });
+                        clearTimeout(timeoutId);
+
+                        if (!res.ok) throw new Error('Server error');
+                        const data = await res.json();
+                        console.log("✅ Backend Response:", data);
+                        return data;
+                    } catch (err) {
+                        if (err.name === 'AbortError') {
+                            console.warn(`⚠️ Backend Call Timed Out (${endpoint})`);
+                        } else {
+                            console.warn(`⚠️ Backend Call Failed (${endpoint}):`, err);
+                        }
+                        return null; // Signal fallback
+                    }
+                };
+
+                // Simulate typing delay
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                let botResponse = { id: Date.now() + 1, sender: 'bot', text: '', choices: [] };
+
+                try {
+                    // --- GLOBAL INTERCEPTOR (Always active) ---
+                    const lowerInput = input.toLowerCase();
+                    if (input === 'Ja, boka hembesök' || lowerInput.includes('boka rådgivning') || lowerInput === 'boka') {
+                        botResponse.text = 'Härligt! Jag kollar Hans kalender... Vilken tid på dagen passar er bäst?';
+                        botResponse.choices = ['Förmiddag', 'Eftermiddag', 'Kväll'];
+                        setBookingState('time_slot');
+                        setMessages(prev => [...prev, botResponse]);
+                        return; // Stop further processing
+                    }
+
+                    if (input === 'Stäng chatt') {
+                        setIsOpen(false);
+                        setIsTyping(false);
+                        return;
+                    }
+
+                    // --- Booking Flow Logic ---
+                    if (bookingState !== 'none' && bookingState !== 'done') {
+
+                        // 1. Handle "Visa fler tider" specifically
+                        if (input === 'Visa fler tider') {
+                            botResponse.text = "Inga problem! Här är några andra tider som Hans är ledig:";
+                            botResponse.choices = ['Torsdag 09:00', 'Fredag 13:00', 'Måndag 16:00'];
+                        }
+                        else if (bookingState === 'time_slot') {
+                            // TRY BACKEND CALENDAR
+                            const calendarData = await callApi('/calendar/slots');
+
+                            if (calendarData && calendarData.slots) {
+                                const backendTimes = calendarData.slots.map(s => s.time);
+                                botResponse.text = `Låt mig kolla i Hans kalender (Live)... 📅 \n\nJo, han är ledig följande tider:`;
+                                botResponse.choices = [...backendTimes, 'Visa fler tider'];
+                            } else {
+                                // Fallback Simulation
+                                let times = [];
+                                let dateStr = "";
+                                if (input === 'Förmiddag') {
+                                    times = ['Tisdag 10:00', 'Onsdag 11:00'];
+                                    dateStr = "kommande vecka";
+                                } else if (input === 'Eftermiddag') {
+                                    times = ['Tisdag 14:00', 'Onsdag 15:00'];
+                                    dateStr = "kommande vecka";
+                                } else {
+                                    times = ['Tisdag 19:00', 'Onsdag 18:00']; // Kväll
+                                    dateStr = "kommande vecka";
+                                }
+                                botResponse.text = `Låt mig kolla i Hans kalender... 📅 \n\nJo, han är ledig följande tider ${dateStr}:`;
+                                botResponse.choices = [...times, 'Visa fler tider'];
+                            }
+                            setBookingState('specific_time');
+                        }
+                        else if (bookingState === 'specific_time') {
+                            setBookingData({ ...bookingData, time: input });
+                            botResponse.text = `Toppen! Jag har reserverat ${input}. För att Hans ska veta vem han besöker, vad är ditt för- och efternamn?`;
+                            setBookingState('details_name');
+                        }
+                        else if (bookingState === 'details_name') {
+                            // VALIDATION: Name
+                            if (input.trim().split(' ').length < 2) {
+                                botResponse.text = "Förlåt, jag behöver både för- och efternamn för bokningen. Försök igen! 🙂";
+                            } else {
+                                setBookingData({ ...bookingData, name: input });
+                                botResponse.text = `Tack ${input}. Vilket telefonnummer kan Hans nå dig på?`;
+                                setBookingState('details_phone');
+                            }
+                        }
+                        else if (bookingState === 'details_phone') {
+                            // VALIDATION: Swedish Phone
+                            const phoneRegex = /^(\+46|0)[\d\s\-]{6,15}$/;
+                            if (!phoneRegex.test(input.replace(/\s/g, ''))) {
+                                botResponse.text = "Det verkar inte vara ett giltigt svenskt nummer. Vänligen ange ett nummer (t.ex. 070-123 45 67).";
+                            } else {
+                                setBookingData({ ...bookingData, phone: input });
+                                botResponse.text = "Utmärkt. Vilken e-postadress ska vi skicka bokningsbekräftelsen till?";
+                                setBookingState('details_email');
+                            }
+                        }
+                        else if (bookingState === 'details_email') {
+                            // VALIDATION: Email
+                            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            if (!emailRegex.test(input)) {
+                                botResponse.text = "Det ser inte ut som en giltig e-postadress. Försök igen! 📧";
+                            } else {
+                                setBookingData({ ...bookingData, email: input });
+                                botResponse.text = "Perfekt. Slutligen, vad är din adress (Gata, Gatunummer)?";
+                                setBookingState('details_address_street');
+                            }
+                        }
+                        else if (bookingState === 'details_address_street') {
+                            setBookingData({ ...bookingData, street: input });
+                            botResponse.text = "Tack. Vilket postnummer?";
+                            setBookingState('details_address_zip');
+                        }
+                        else if (bookingState === 'details_address_zip') {
+                            setBookingData({ ...bookingData, zip: input });
+                            botResponse.text = "Och vilken ort?";
+                            setBookingState('details_address_city');
+                        }
+                        else if (bookingState === 'details_address_city') {
+                            const fullAddress = `${bookingData.street}, ${bookingData.zip} ${input}`;
+                            setBookingData({ ...bookingData, city: input, fullAddress: fullAddress });
+
+                            botResponse.text = `
+                                Tack! Då har jag följande uppgifter:
+                                
+                                👤 ${bookingData.name}
+                                📞 ${bookingData.phone}
+                                📧 ${bookingData.email}
+                                🏠 ${fullAddress}
+                                📅 ${bookingData.time}
+                                
+                                Stämmer detta?
+                            `;
+                            botResponse.choices = ['Ja, boka nu', 'Ändra uppgifter'];
+                            setBookingState('confirmation');
+                        }
+                        else if (bookingState === 'confirmation' && input === 'Ja, boka nu') {
+                            // TRY BACKEND EMAIL
+                            await callApi('/email/send', 'POST', {
+                                to: bookingData.email,
+                                subject: 'Bokningsbekräftelse - Takel.se',
+                                body: `
+                                    <h1>Tack för din bokning!</h1>
+                                    <p>Här är detaljerna för ditt hembesök:</p>
+                                    <ul>
+                                        <li><strong>Namn:</strong> ${bookingData.name}</li>
+                                        <li><strong>Tid:</strong> ${bookingData.time}</li>
+                                        <li><strong>Adress:</strong> ${bookingData.fullAddress}</li>
+                                        <li><strong>Telefon:</strong> ${bookingData.phone}</li>
+                                        <li><strong>E-post:</strong> ${bookingData.email}</li>
+                                    </ul>
+                                    <p>Hans Nilsson kommer att kontakta dig innan besöket.</p>
+                                `
+                            });
+
+                            // TRY BACKEND CALENDAR
+                            await callApi('/calendar/book', 'POST', {
+                                summary: `Hembesök: ${bookingData.name}`,
+                                description: `Tel: ${bookingData.phone}\nAdress: ${bookingData.fullAddress}`,
+                                startTime: new Date().toISOString() // In real app, parse bookingData.time
+                            });
+
+                            botResponse.text = "Fantastiskt! 🎉 Bokningen är bekräftad och jag har skickat ett mail till dig. Hans ser fram emot att träffas!";
+                            botResponse.choices = ['Stäng chatt'];
+                            setBookingState('done');
+                        }
+                    }
+                    // --- General Conversation Logic ---
+                    else {
+                        // TRY BACKEND CHAT
+                        const chatData = await callApi('/chat', 'POST', { message: input });
+
+                        if (chatData && chatData.response) {
+                            botResponse.text = chatData.response;
+                            // Add generic choices if backend doesn't provide them
+                            if (!botResponse.choices || botResponse.choices.length === 0) {
+                                if (botResponse.text.toLowerCase().includes('boka')) {
+                                    botResponse.choices = ['Ja, boka hembesök', 'Nej tack'];
+                                } else {
+                                    botResponse.choices = ['Boka rådgivning', 'Stäng chatt'];
+                                }
+                            }
+                        } else {
+                            // Fallback Simulation
+                            const lowerInput = input.toLowerCase();
+
+                            if (lowerInput.includes('spara') || input === 'Spara pengar') {
+                                botResponse.text = 'Absolut! De flesta av våra kunder sparar 10-30 000 kr per år. Vill du att jag gör en snabb kalkyl för ditt tak?';
+                                botResponse.choices = ['Ja, gärna!', 'Nej, bara nyfiken'];
+                            } else if (lowerInput.includes('avdrag') || input === 'Teknikavdrag') {
+                                botResponse.text = 'Grönt Teknikavdrag ger dig 50% avdrag för batterier/laddboxar och 15% för solceller. Avdraget görs direkt på fakturan. Vill du veta mer?';
+                                botResponse.choices = ['Ja, räkna på det', 'Tillbaka'];
+                            } else if (lowerInput.includes('boka') || input === 'Boka rådgivning') {
+                                botResponse.text = 'Klart vi ska prata! Jag kan boka in ett kostnadsfritt hembesök där vi tittar på ert tak. Vilken tid på dagen passar er bäst?';
+                                botResponse.choices = ['Förmiddag', 'Eftermiddag', 'Kväll'];
+                                setBookingState('time_slot');
+                            } else if (input === 'Ja, gärna!' || input === 'Ja, räkna på det') {
+                                botResponse.text = 'Härligt! Vad har du för typ av tak på din villa?';
+                                botResponse.choices = ['Tegel', 'Plåt', 'Papp/Annat'];
+                            } else if (['Tegel', 'Plåt', 'Papp/Annat'].includes(input)) {
+                                botResponse.text = 'Tack! Jag sätter gärna ihop en offert. Vill du att Hans kommer ut på ett hembesök för en exakt beräkning?';
+                                botResponse.choices = ['Ja, boka hembesök', 'Nej, maila mig'];
+                            } else if (input === 'Ja, ring mig') {
+                                botResponse.text = 'Vad bra! Vilket nummer når vi dig på?';
+                                setBookingState('details_phone');
+                            } else if (input.includes('Jag vill boka')) {
+                                botResponse.text = `Utmärkt val! Tänk på att paketen enbart är förslag.Jag rekommenderar att vi kommer ut och tittar på ert tak för att skräddarsy lösningen.Ska vi boka ett hembesök ? `;
+                                botResponse.choices = ['Ja, boka hembesök', 'Nej, bara pris'];
+                            } else {
+                                botResponse.text = 'Intressant fråga! Det där är något Hans gärna svarar på vid ett hembesök. Vill du boka en kostnadsfri rådgivning?';
+                                botResponse.choices = ['Ja, boka hembesök', 'Nej tack'];
+                            }
+                        }
+                    }
+
+                    setMessages(prev => [...prev, botResponse]);
+                } catch (error) {
+                    console.error("Error in handleInteraction:", error);
+                } finally {
+                    setIsTyping(false);
+                }
+            };
+
+            return (
+                <>
+                    {/* Floating Toggle Button */}
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="fixed bottom-6 right-6 z-50 bg-orange-600 hover:bg-orange-700 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-110 flex items-center gap-2"
+                    >
+                        {isOpen ? <Icon name="X" className="w-8 h-8" /> : <Icon name="MessageCircle" className="w-8 h-8" />}
+                        {!isOpen && <span className="font-bold text-lg pr-2">Fråga oss!</span>}
+                    </button>
+
+                    {/* Chat Window */}
+                    {isOpen && (
+                        <div className="fixed bottom-24 right-6 z-50 w-96 max-w-[90vw] bg-white rounded-2xl shadow-2xl border border-orange-100 flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 fade-in duration-300 h-[600px] max-h-[80vh]">
+                            {/* Header */}
+                            <div className="bg-orange-600 p-4 flex items-center gap-3 shrink-0">
+                                <div className="bg-white/20 p-2 rounded-full">
+                                    <Icon name="Bot" className="w-6 h-6 text-white" />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-white font-bold text-xl">Takel Assistent</h3>
+                                    <div className="flex items-center gap-2">
+                                        <div className={`w - 2 h - 2 rounded - full ${isBackendOnline ? 'bg-green-400' : 'bg-red-400'} animate - pulse`}></div>
+                                        <p className="text-orange-100 text-sm">{isBackendOnline ? 'Online (AI)' : 'Simulering'}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Messages Area */}
+                            <div className="flex-1 p-4 overflow-y-auto bg-gray-50 space-y-4">
+                                {messages.map((msg) => (
+                                    <div key={msg.id} className={`flex flex - col ${msg.sender === 'user' ? 'items-end' : 'items-start'} `}>
+                                        <div className={`p - 4 rounded - 2xl max - w - [85 %] text - lg leading - relaxed shadow - sm whitespace - pre - wrap ${msg.sender === 'user'
+                                            ? 'bg-orange-600 text-white rounded-tr-none'
+                                            : 'bg-white text-gray-800 border border-gray-200 rounded-tl-none'
+                                            } `}>
+                                            {msg.text}
+                                        </div>
+
+                                        {/* Choices (only for bot messages) */}
+                                        {msg.sender === 'bot' && msg.choices && (
+                                            <div className="mt-3 flex flex-wrap gap-2">
+                                                {msg.choices.map((choice, idx) => (
+                                                    <button
+                                                        key={idx}
+                                                        onClick={() => handleChoice(choice)}
+                                                        className="bg-orange-50 hover:bg-orange-100 text-orange-800 border border-orange-200 px-4 py-2 rounded-full text-base font-medium transition-colors"
+                                                    >
+                                                        {choice}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                                {isTyping && (
+                                    <div className="flex items-center gap-1 p-4 bg-white rounded-2xl rounded-tl-none w-fit border border-gray-200">
+                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                                    </div>
+                                )}
+                                <div ref={messagesEndRef} />
+                            </div>
+
+                            {/* Input Area */}
+                            <div className="p-4 bg-white border-t border-gray-100 shrink-0">
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        value={inputValue}
+                                        onChange={(e) => setInputValue(e.target.value)}
+                                        onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                                        placeholder="Skriv en fråga..."
+                                        className="flex-1 p-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none text-base"
+                                    />
+                                    <button
+                                        onClick={handleSend}
+                                        className="bg-orange-600 hover:bg-orange-700 text-white p-3 rounded-xl transition-colors"
+                                    >
+                                        <Icon name="ArrowRight" className="w-6 h-6" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </>
+            );
+        };
+
+        const Footer = () => {
+            return (
+                <footer className="bg-[#1A1A1A] text-white py-16 px-6">
+                    <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 border-b border-gray-800 pb-12">
+                        {/* Brand */}
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-2">
+                                <Icon name="Sun" className="w-6 h-6 text-orange-500" />
+                                <span className="text-xl font-bold">Takel.se</span>
+                            </div>
+                            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+                                Sveriges mest energiska solcellsföretag. Vi gör solenergi enkelt och lönsamt.
+                            </p>
+                        </div>
+
+                        {/* Contact */}
+                        <div className="space-y-4">
+                            <h4 className="font-bold text-lg">Kontakt</h4>
+                            <div className="space-y-3 text-sm text-gray-400">
+                                <div className="flex items-center gap-3">
+                                    <Icon name="Phone" className="w-4 h-4" />
+                                    <span>08-37 30 30</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <Icon name="Mail" className="w-4 h-4" />
+                                    <span>hej@takel.se</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <Icon name="MapPin" className="w-4 h-4" />
+                                    <span>Stockholm, Sverige</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Hours */}
+                        <div className="space-y-4">
+                            <h4 className="font-bold text-lg">Öppettider</h4>
+                            <div className="space-y-2 text-sm text-gray-400">
+                                <p>Måndag - Fredag: 08:00 - 17:00</p>
+                                <p>Lördag - Söndag: Stängt</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="max-w-7xl mx-auto pt-8 text-center text-gray-600 text-xs">
+                        © 2024 Takel.se. Alla rättigheter förbehållna.
+                    </div>
+                </footer>
+            );
+        };
+
+        const BlogPostModal = ({ article, onClose }) => {
+            if (!article) return null;
+
+            return (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
+                    <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative z-10 shadow-2xl animate-in fade-in zoom-in-95 duration-300">
+                        <button
+                            onClick={onClose}
+                            className="absolute top-4 right-4 p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                        >
+                            <Icon name="X" className="w-6 h-6 text-gray-600" />
+                        </button>
+
+                        <div className="h-64 bg-orange-100 flex items-center justify-center">
+                            <Icon name="Sun" className="w-20 h-20 text-orange-300" />
+                        </div>
+
+                        <div className="p-8 md:p-12">
+                            <div className="flex items-center gap-4 mb-6 text-sm">
+                                <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full font-medium">
+                                    {article.tag}
+                                </span>
+                                <span className="text-gray-500">{article.date}</span>
+                                <span className="text-gray-400">•</span>
+                                <span className="text-gray-500">{article.readTime}</span>
+                            </div>
+
+                            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 leading-tight">
+                                {article.title}
+                            </h2>
+
+                            <div className="prose prose-lg prose-orange max-w-none text-gray-600 space-y-6">
+                                {article.content}
+                            </div>
+
+                            <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">
+                                        TN
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-bold text-gray-900">Takel Nyheter</p>
+                                        <p className="text-xs text-gray-500">Redaktionen</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={onClose}
+                                    className="text-orange-600 font-bold hover:text-orange-700"
+                                >
+                                    Stäng artikel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const NewsSection = () => {
+            const [selectedArticle, setSelectedArticle] = useState(null);
+
+            const articles = [
+                {
+                    id: 1,
+                    tag: "Marknad",
+                    title: "Solceller i Stockholm – är det lönsamt?",
+                    excerpt: "Trots våra nordliga breddgrader är Stockholm en utmärkt plats för solenergi. Vi går igenom kalkylen för en vanlig villa i länet.",
+                    date: "20 Nov 2024",
+                    readTime: "4 min läsning",
+                    content: (
+                        <>
+                            <p className="lead text-xl text-gray-800 font-medium">
+                                Många tror att man måste bo i Spanien för att solceller ska löna sig. Men faktum är att Stockholm har nästan lika många soltimmar som norra Tyskland, där solenergi är enormt stort.
+                            </p>
+                            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Stockholms unika förutsättningar</h3>
+                            <p>
+                                Solinstrålningen i Stockholmsområdet ligger på ca 1000 kWh per kvadratmeter och år. Det svala klimatet är faktiskt en fördel för solcellerna, då de tappar i verkningsgrad när de blir för varma. En solig vårdag i Stockholm kan därför ge högre effekt än en het sommardag i södra Europa.
+                            </p>
+                            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Kalkylen för en villa</h3>
+                            <p>
+                                För en normalstor villa i länet med en anläggning på 10 kW ser kalkylen ofta ut så här:
+                            </p>
+                            <ul className="list-disc pl-6 space-y-2">
+                                <li><strong>Produktion:</strong> Ca 9 000 - 10 000 kWh/år</li>
+                                <li><strong>Besparing:</strong> Ca 15 000 - 20 000 kr/år (beroende på elpris)</li>
+                                <li><strong>Återbetalningstid:</strong> Ofta 6-9 år med dagens elpriser och Grönt Avdrag.</li>
+                            </ul>
+                            <p>
+                                Med en livslängd på 30+ år är det en investering som slår börsen för de flesta husägare.
+                            </p>
+                        </>
+                    )
+                },
+                {
+                    id: 2,
+                    tag: "Ekonomi",
+                    title: "Grönt Teknikavdrag 2024: Allt du behöver veta",
+                    excerpt: "Maximera din investering! Just nu får du 50% avdrag för batterier och laddboxar, samt 15% för solceller. Vi förklarar reglerna.",
+                    date: "15 Nov 2024",
+                    readTime: "3 min läsning",
+                    content: (
+                        <>
+                            <p className="lead text-xl text-gray-800 font-medium">
+                                Staten vill uppmuntra fler att producera och lagra sin egen el. Därför finns det generösa skatteavdraget för Grön Teknik, som fungerar likt ROT-avdraget men med en egen pott.
+                            </p>
+                            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Så fungerar avdraget</h3>
+                            <p>
+                                Avdraget görs direkt på fakturan från oss. Du behöver inte ligga ute med pengarna.
+                            </p>
+                            <div className="bg-orange-50 p-6 rounded-xl border border-orange-100 my-6">
+                                <h4 className="font-bold text-lg mb-2">Aktuella nivåer 2024:</h4>
+                                <ul className="space-y-2">
+                                    <li>🔋 <strong>Batterier för lagring:</strong> 50% avdrag på arbete och material.</li>
+                                    <li>🚗 <strong>Laddbox till elbil:</strong> 50% avdrag på arbete och material.</li>
+                                    <li>☀️ <strong>Solceller:</strong> 15% avdrag på arbete och material.</li>
+                                </ul>
+                            </div>
+                            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Hur mycket kan jag få?</h3>
+                            <p>
+                                Du kan få upp till 50 000 kr i skattereduktion per person och år. Är ni två som äger huset kan ni alltså få totalt 100 000 kr i avdrag. Detta är separat från ROT-avdraget, så du kan renovera köket samma år utan att det påverkar.
+                            </p>
+                        </>
+                    )
+                },
+                {
+                    id: 3,
+                    tag: "Kundberättelse",
+                    title: "Dag och Eva i Täby valde Takel",
+                    excerpt: "Vi ville ha en trygg leverantör som förstod våra behov. Takel hjälpte oss från start till mål och nu producerar vi vår egen el.",
+                    date: "05 Nov 2024",
+                    readTime: "3 min läsning",
+                    content: (
+                        <>
+                            <p className="lead text-xl text-gray-800 font-medium">
+                                Hemma hos Dag och Eva i Täby glittrar 24 nya paneler på taket. "Vi funderade länge, men elpriserna förra vintern fick oss att ta steget," berättar Dag.
+                            </p>
+                            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Varför Takel?</h3>
+                            <p>
+                                "Vi tog in offerter från fyra olika bolag," säger Eva. "Takel var inte billigast, men de var de enda som faktiskt kom ut och tittade på vårt tak innan de gav ett pris. De andra kollade bara på satellitbilder."
+                            </p>
+                            <p>
+                                Paret valde vårt <strong>Familjepaket</strong> med tillhörande batteri för att kunna lagra solenergin till kvällen.
+                            </p>
+                            <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Installationen</h3>
+                            <p>
+                                "Montörerna kom på utsatt tid och var klara på två dagar. De städade upp efter sig exemplariskt," säger Dag nöjt.
+                            </p>
+                            <div className="bg-green-50 p-6 rounded-xl border border-green-100 my-6">
+                                <p className="italic text-green-800">
+                                    "Nu producerar vi mer än vi gör av med på sommaren och säljer överskottet. Det känns fantastiskt att vara självförsörjande."
+                                    <br />
+                                    <span className="font-bold not-italic mt-2 block">– Eva, Täby</span>
+                                </p>
+                            </div>
+                        </>
+                    )
+                }
+            ];
+
+            return (
+                <section className="py-24 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="text-center max-w-3xl mx-auto mb-16">
+                            <h2 className="text-4xl font-bold mb-6 text-gray-900">Nyheter & Guider</h2>
+                            <p className="text-xl text-gray-600">
+                                Kunskap för dig som vill göra en smart investering. Vi hjälper dig att navigera i energidjungeln.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {articles.map((article) => (
+                                <article key={article.id} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                                    <div className="h-48 bg-orange-100 flex items-center justify-center">
+                                        {/* Placeholder for article image */}
+                                        <Icon name="Sun" className="w-16 h-16 text-orange-300" />
+                                    </div>
+                                    <div className="p-8 flex-1 flex flex-col">
+                                        <div className="flex items-center gap-4 mb-4 text-sm">
+                                            <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full font-medium">
+                                                {article.tag}
+                                            </span>
+                                            <span className="text-gray-400">{article.date}</span>
+                                        </div>
+                                        <h3 className="text-xl font-bold mb-3 text-gray-900 leading-tight">
+                                            {article.title}
+                                        </h3>
+                                        <p className="text-gray-600 mb-6 flex-1 leading-relaxed">
+                                            {article.excerpt}
+                                        </p>
+                                        <div className="flex items-center justify-between pt-6 border-t border-gray-100">
+                                            <span className="text-sm text-gray-400">{article.readTime}</span>
+                                            <button
+                                                onClick={() => setSelectedArticle(article)}
+                                                className="text-orange-600 font-bold hover:text-orange-700 flex items-center gap-2 group"
+                                            >
+                                                Läs mer
+                                                <Icon name="ArrowRight" className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+
+                        <div className="mt-16 text-center">
+                            <button className="bg-white border-2 border-gray-200 text-gray-600 hover:border-orange-500 hover:text-orange-600 px-8 py-4 rounded-xl font-bold transition-colors">
+                                Visa alla artiklar
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Blog Post Modal */}
+                    {selectedArticle && (
+                        <BlogPostModal
+                            article={selectedArticle}
+                            onClose={() => setSelectedArticle(null)}
+                        />
+                    )}
+                </section>
+            );
+        };
+
+        const App = () => {
+            const [isChatOpen, setIsChatOpen] = useState(false);
+            const [chatMessages, setChatMessages] = useState([
+                {
+                    id: 1,
+                    sender: 'bot',
+                    text: 'Hej! 👋 Jag är Takels AI-assistent. Vad funderar du på kring solceller idag?',
+                    choices: ['Spara pengar', 'Teknikavdrag', 'Boka rådgivning']
+                }
+            ]);
+
+            const handlePackageBooking = (packageName) => {
+                setIsChatOpen(true);
+                const userMsg = { id: Date.now(), sender: 'user', text: `Jag vill boka ${packageName} ` };
+                setChatMessages(prev => [...prev, userMsg]);
+
+                // Trigger bot response for this intent immediately (simulated)
+                setTimeout(() => {
+                    const botMsg = {
+                        id: Date.now() + 1,
+                        sender: 'bot',
+                        text: `Utmärkt val! \n\nTänk dock på att ${packageName} (och våra andra paket) enbart är förslag.Varje hus är unikt. 🏠\n\nJag föreslår att vi kommer på ett kostnadsfritt hembesök för att skräddarsy den bästa lösningen för just er.Vad sägs om det ?`,
+                        choices: ['Ja, boka hembesök', 'Nej, jag vill bara veta pris']
+                    };
+                    setChatMessages(prev => [...prev, botMsg]);
+                }, 1000);
+            };
+
+            return (
+                <div className="min-h-screen bg-background font-sans text-text">
+                    <Header />
+                    <main>
+                        <Hero />
+                        <Stats />
+                        <Features />
+                        <Packages onBooking={handlePackageBooking} />
+                        <NewsSection />
+                        <ContactForm />
+                    </main>
+                    <Footer />
+                    <ChatWidget
+                        isOpen={isChatOpen}
+                        setIsOpen={setIsChatOpen}
+                        messages={chatMessages}
+                        setMessages={setChatMessages}
+                    />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
