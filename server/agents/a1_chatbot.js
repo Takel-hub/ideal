@@ -18,8 +18,8 @@ async function handleChat(message) {
     }
 
     try {
-        // Use the stable Gemini 1.5 Flash model
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        // Use the standard stable Gemini Pro model (widely available)
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
         const systemPrompt = `
         Du är Hans Nilsson, en vänlig och kunnig solcellsexpert från Takel.se.
