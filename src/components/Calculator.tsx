@@ -176,7 +176,7 @@ export const Calculator = ({ isOpen, onClose }: CalculatorProps) => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className={batterySize === 0 ? "opacity-50 transition-opacity" : "transition-opacity"}>
                             <div className="flex justify-between mb-2">
                                 <label className="text-sm font-medium text-gray-700">Effekttariff (kr/kW/mån)</label>
                                 <span className="text-sm font-bold text-gray-900">{tariffRate} kr</span>
@@ -187,10 +187,13 @@ export const Calculator = ({ isOpen, onClose }: CalculatorProps) => {
                                 max="200"
                                 step="10"
                                 value={tariffRate}
+                                disabled={batterySize === 0}
                                 onChange={(e) => setTariffRate(parseInt(e.target.value))}
-                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                                className={`w-full h-2 rounded-lg appearance-none cursor-pointer ${batterySize === 0 ? 'bg-gray-200' : 'bg-gray-200 accent-orange-600'}`}
                             />
-                            <p className="text-xs text-gray-500 mt-1">Avgift för effekttoppar (varierar per nätägare)</p>
+                            <p className="text-xs text-gray-500 mt-1">
+                                {batterySize === 0 ? "Kräver ett batteri för att kapa effekttoppar" : "Avgift för effekttoppar (varierar per nätägare)"}
+                            </p>
                         </div>
 
                         <div>

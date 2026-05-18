@@ -20,9 +20,9 @@ export const Footer = () => {
                 <div className="space-y-4">
                     <h4 className="font-bold text-lg">Kontakt</h4>
                     <div className="space-y-3 text-sm text-gray-400">
-                        <a href="tel:08373030" className="flex items-center gap-3 hover:text-orange-500 transition-colors">
+                        <a href="tel:0708704233" className="flex items-center gap-3 hover:text-orange-500 transition-colors">
                             <Phone className="w-4 h-4" />
-                            <span>08-37 30 30</span>
+                            <span>070-870 42 33</span>
                         </a>
                         <div className="flex items-center gap-3">
                             <Mail className="w-4 h-4" />

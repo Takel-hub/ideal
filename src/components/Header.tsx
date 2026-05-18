@@ -26,9 +26,9 @@ export const Header = () => {
 
                 {/* Desktop CTA & Phone */}
                 <div className="hidden md:flex items-center gap-4">
-                    <a href="tel:08373030" className="flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-800 transition-colors">
+                    <a href="tel:0708704233" className="flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-800 transition-colors">
                         <Phone className="w-5 h-5 text-orange-600" />
-                        <span className="text-lg">08 - 37 30 30</span>
+                        <span className="text-lg">070-870 42 33</span>
                     </a>
                 </div>
 
@@ -48,9 +48,9 @@ export const Header = () => {
                             <a href="#om-oss" onClick={() => setIsMenuOpen(false)}>Om oss</a>
                             <a href="#paket" onClick={() => setIsMenuOpen(false)}>Paket</a>
                             <a href="#kontakt" onClick={() => setIsMenuOpen(false)}>Kontakt</a>
-                            <a href="tel:08373030" className="flex items-center gap-2 mt-4 font-semibold">
+                            <a href="tel:0708704233" className="flex items-center gap-2 mt-4 font-semibold">
                                 <Phone className="w-5 h-5 text-orange-600" />
-                                08 - 37 30 30
+                                070-870 42 33
                             </a>
                         </nav>
                     </div>
