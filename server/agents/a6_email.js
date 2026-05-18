@@ -25,9 +25,31 @@ async function sendEmail(to, subject, htmlContent) {
     }
 
     try {
-        // Handle array of recipients
-        const recipients = Array.isArray(to) ? to.join(', ') : to;
+        // --- BYPASS SMTP IF USING RESEND ---
+        // Since Render has strict outbound SMTP firewalls, we use Resend's HTTPS API
+        if (process.env.SMTP_HOST.includes('resend')) {
+            console.log("A6: Using Resend HTTPS API to bypass SMTP blocks...");
+            const res = await fetch('https://api.resend.com/emails', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${process.env.SMTP_PASS}`
+                },
+                body: JSON.stringify({
+                    from: `"Takel.se" <${process.env.FROM_EMAIL || 'hej@takel.se'}>`,
+                    to: Array.isArray(to) ? to : [to],
+                    subject: subject,
+                    html: htmlContent
+                })
+            });
+            if (!res.ok) throw new Error(`Resend API Error: ${await res.text()}`);
+            const data = await res.json();
+            console.log("Message sent via Resend API: %s", data.id);
+            return { success: true, messageId: data.id };
+        }
 
+        // --- FALLBACK TO STANDARD SMTP ---
+        const recipients = Array.isArray(to) ? to.join(', ') : to;
         const info = await transporter.sendMail({
             from: `"Takel.se" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`,
             to: recipients,
@@ -36,9 +58,10 @@ async function sendEmail(to, subject, htmlContent) {
         });
         console.log("Message sent: %s", info.messageId);
         return { success: true, messageId: info.messageId };
+
     } catch (error) {
         console.error("A6 Error sending email:", error);
-        console.warn("A6: Falling back to simulation due to SMTP error.");
+        console.warn("A6: Falling back to simulation due to email error.");
         console.log("--- FAILED EMAIL CONTENT (FALLBACK) ---");
         console.log(htmlContent);
         console.log("-------------------------------------");
