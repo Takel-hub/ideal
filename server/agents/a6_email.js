@@ -29,7 +29,7 @@ async function sendEmail(to, subject, htmlContent) {
         const recipients = Array.isArray(to) ? to.join(', ') : to;
 
         const info = await transporter.sendMail({
-            from: `"Takel.se" <${process.env.SMTP_USER}>`,
+            from: `"Takel.se" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`,
             to: recipients,
             subject: subject,
             html: htmlContent
