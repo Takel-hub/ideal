@@ -60,12 +60,15 @@ app.get('/api/calendar/slots', async (req, res) => {
 app.post('/api/calendar/book', async (req, res) => {
     try {
         const { summary, description, startTime } = req.body;
-        // Map frontend body to what bookSlot expects
+        const addressMatch = description.match(/Adress:\s*([^\n]+)/i);
+        const phoneMatch = description.match(/Tel:\s*([^\n]+)/i);
+        const emailMatch = description.match(/Email:\s*([^\n]+)/i);
+
         const customerDetails = {
             name: summary.replace('Hembesök: ', ''),
-            address: description.split('Adress: ')[1] || 'Unknown',
-            phone: description.split('Tel: ')[0].replace('Tel: ', '').trim(),
-            email: 'unknown@example.com', // Frontend doesn't send email in this body, but description has it
+            address: addressMatch ? addressMatch[1].trim() : 'Unknown',
+            phone: phoneMatch ? phoneMatch[1].trim() : 'Unknown',
+            email: emailMatch ? emailMatch[1].trim() : 'unknown@example.com',
             gdprConsent: true, // Implicitly true if they reached this stage
             timestamp: new Date().toISOString()
         };
