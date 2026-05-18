@@ -526,7 +526,57 @@ export const ChatWidget = ({ quoteData }: { quoteData?: any }) => {
                     setBookingState('details_address_zip');
                 }
                 else if (bookingState === 'details_address_zip') {
+                    const cleanZip = input.replace(/\\s/g, '');
                     setBookingData({ ...bookingData, zip: input });
+
+                    // Try to auto-fetch the city if zip is 5 digits
+                    if (cleanZip.length === 5) {
+                        try {
+                            const zipRes = await fetch(`https://api.zippopotam.us/se/${cleanZip}`);
+                            if (zipRes.ok) {
+                                const data = await zipRes.json();
+                                if (data.places && data.places.length > 0) {
+                                    const autoCity = data.places[0]['place name'];
+                                    const fullAddress = `${bookingData.street}, ${input} ${autoCity}`;
+                                    const newData = { ...bookingData, zip: input, city: autoCity, fullAddress };
+                                    setBookingData(newData);
+
+                                    // Format the time nicely for display
+                                    let displayTime = newData.time || '';
+                                    if (displayTime.includes('T')) {
+                                        try {
+                                            const dateObj = new Date(displayTime);
+                                            const dateStr = dateObj.toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' });
+                                            const timeStr = dateObj.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+                                            displayTime = `${dateStr} kl ${timeStr}`;
+                                            displayTime = displayTime.charAt(0).toUpperCase() + displayTime.slice(1);
+                                        } catch (e) {}
+                                    }
+
+                                    botResponse.text = `Tack! Jag ser att det är i ${autoCity}. Då har jag följande uppgifter:
+                    
+👤 ${newData.name}
+📞 ${newData.phone}
+📧 ${newData.email}
+🏠 ${fullAddress}
+📅 ${displayTime}
+
+Stämmer detta?`;
+                                    botResponse.choices = ['Ja, boka nu', 'Ändra uppgifter'];
+                                    setBookingState('confirmation');
+                                    
+                                    // Early return since we updated botResponse
+                                    setMessages(prev => [...prev, botResponse]);
+                                    setIsTyping(false);
+                                    return;
+                                }
+                            }
+                        } catch (err) {
+                            // Silent fail, just ask for city normally
+                        }
+                    }
+
+                    // Fallback: If zip lookup fails, ask manually
                     botResponse.text = "Och vilken ort?";
                     setBookingState('details_address_city');
                 }
