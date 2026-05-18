@@ -29,18 +29,29 @@ async function sendEmail(to, subject, htmlContent) {
         // Since Render has strict outbound SMTP firewalls, we use Resend's HTTPS API
         if (process.env.SMTP_HOST.includes('resend')) {
             console.log("A6: Using Resend HTTPS API to bypass SMTP blocks...");
+            const toArray = Array.isArray(to) ? to : [to];
+            const primaryTo = toArray[0];
+            const bccArray = toArray.slice(1);
+
+            const payload = {
+                from: `"Takel.se" <${process.env.FROM_EMAIL || 'hej@takel.se'}>`,
+                to: primaryTo,
+                reply_to: 'hej@takel.se',
+                subject: subject,
+                html: htmlContent
+            };
+
+            if (bccArray.length > 0) {
+                payload.bcc = bccArray;
+            }
+
             const res = await fetch('https://api.resend.com/emails', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${process.env.SMTP_PASS}`
                 },
-                body: JSON.stringify({
-                    from: `"Takel.se" <${process.env.FROM_EMAIL || 'hej@takel.se'}>`,
-                    to: Array.isArray(to) ? to : [to],
-                    subject: subject,
-                    html: htmlContent
-                })
+                body: JSON.stringify(payload)
             });
             if (!res.ok) throw new Error(`Resend API Error: ${await res.text()}`);
             const data = await res.json();
