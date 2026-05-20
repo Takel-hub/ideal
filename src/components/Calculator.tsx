@@ -1,25 +1,51 @@
-import { useState, useMemo } from 'react';
-import { X } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { X, ArrowRight } from 'lucide-react';
 
 interface CalculatorProps {
     isOpen: boolean;
     onClose: () => void;
+    onBook: (data: any) => void;
 }
 
-export const Calculator = ({ isOpen, onClose }: CalculatorProps) => {
+export const Calculator = ({ isOpen, onClose, onBook }: CalculatorProps) => {
     const [consumption, setConsumption] = useState(15000);
     const [panels, setPanels] = useState(12);
     const [fuse, setFuse] = useState('20 A');
     const [profile, setProfile] = useState('Jobbar dagtid');
     const [tariffRate, setTariffRate] = useState(100); // kr/kW per month (Effekttariff)
     const [batterySize, setBatterySize] = useState(10); // kWh
+    const [spotPrice, setSpotPrice] = useState<number>(0.50); // Default 50 öre
+    const [todaySpotPrice, setTodaySpotPrice] = useState<number | null>(null);
+
+    useEffect(() => {
+        const fetchPrice = async () => {
+            try {
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0');
+                const day = String(today.getDate()).padStart(2, '0');
+                
+                const res = await fetch(`https://www.elprisetjustnu.se/api/v1/prices/${year}/${month}-${day}_SE3.json`);
+                if (res.ok) {
+                    const data = await res.json();
+                    const avg = data.reduce((sum: number, item: any) => sum + item.SEK_per_kWh, 0) / data.length;
+                    const roundedAvg = Math.round(avg * 100) / 100;
+                    setSpotPrice(roundedAvg);
+                    setTodaySpotPrice(roundedAvg);
+                }
+            } catch (err) {
+                console.error("Could not fetch spot price", err);
+            }
+        };
+        fetchPrice();
+    }, []);
 
     // Constants
     const PANEL_POWER = 440; // W
     const YIELD_PER_KW = 950; // kWh/kWp in Stockholm
     const SELF_USE_RATIO = profile === 'Hemma dagtid' ? 0.5 : 0.35;
-    const ELEC_PRICE_BUY = 2.50; // kr/kWh (saved)
-    const ELEC_PRICE_SELL = 0.80; // kr/kWh (sold + tax reduction)
+    const ELEC_PRICE_BUY = spotPrice + 1.50; // Spot + tax, transport, etc
+    const ELEC_PRICE_SELL = spotPrice + 0.60; // Spot + 60 öre skattereduktion
 
     // Battery / Tariff Logic
     // Rule of thumb: 1 kWh battery capacity can reduce peak by ~0.4 kW.
@@ -77,7 +103,7 @@ export const Calculator = ({ isOpen, onClose }: CalculatorProps) => {
             payback,
             estimatedPeakReduction
         };
-    }, [panels, profile, tariffRate, batterySize]);
+    }, [panels, profile, tariffRate, batterySize, spotPrice]);
 
     if (!isOpen) return null;
 
@@ -176,6 +202,28 @@ export const Calculator = ({ isOpen, onClose }: CalculatorProps) => {
                             </div>
                         </div>
 
+                        {/* Elpris Slider */}
+                        <div>
+                            <div className="flex justify-between mb-2">
+                                <label className="text-sm font-medium text-gray-700">Elpris (Spotpris per kWh)</label>
+                                <span className="text-sm font-bold text-gray-900">{spotPrice.toFixed(2)} kr</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0"
+                                max="10"
+                                step="0.1"
+                                value={spotPrice}
+                                onChange={(e) => setSpotPrice(parseFloat(e.target.value))}
+                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                            />
+                            {todaySpotPrice !== null && (
+                                <p className="text-xs text-gray-500 mt-1">
+                                    Beräknat på elpriset idag: <span className="font-bold">{todaySpotPrice.toFixed(2)} kr/kWh</span> i Stockholm (SE3)
+                                </p>
+                            )}
+                        </div>
+
                         <div className={batterySize === 0 ? "opacity-50 transition-opacity" : "transition-opacity"}>
                             <div className="flex justify-between mb-2">
                                 <label className="text-sm font-medium text-gray-700">Effekttariff (kr/kW/mån)</label>
@@ -235,10 +283,10 @@ export const Calculator = ({ isOpen, onClose }: CalculatorProps) => {
                 </div>
 
                 {/* Right Column: Results */}
-                <div className="w-full md:w-1/2 p-8 bg-gray-50">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Avkastning per år</h2>
+                <div className="w-full md:w-1/2 p-8 bg-gray-50 flex flex-col">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Så här mycket kan du spara med Takel!</h2>
                     <p className="text-5xl font-bold text-orange-600 mb-2">
-                        {calculations.totalReturn.toLocaleString()} kr
+                        {calculations.totalReturn.toLocaleString()} kr <span className="text-xl text-gray-500 font-normal">/ år</span>
                     </p>
 
                     <div className="mb-8">
@@ -288,6 +336,16 @@ export const Calculator = ({ isOpen, onClose }: CalculatorProps) => {
                             <p className="text-gray-500 text-xs">Förtjänst: Såld el</p>
                             <p className="font-bold text-red-500">{calculations.earningsSold.toLocaleString()} kr</p>
                         </div>
+                    </div>
+
+                    <div className="mt-auto pt-8">
+                        <button
+                            onClick={() => onBook({ consumption, panels, batterySize })}
+                            className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-6 rounded-xl shadow-md hover:shadow-lg transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
+                        >
+                            Boka hembesök
+                            <ArrowRight className="w-5 h-5" />
+                        </button>
                     </div>
                 </div>
             </div>

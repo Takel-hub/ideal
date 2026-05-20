@@ -15,10 +15,17 @@ function App() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
     const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
     const [quoteData, setQuoteData] = useState<any>(null);
+    const [initialQuoteData, setInitialQuoteData] = useState<any>(null);
 
     const handleQuoteSuccess = (data: any) => {
         setQuoteData(data);
         // The ChatWidget will detect this change and trigger the flow
+    };
+
+    const handleOpenQuote = (initialData?: any) => {
+        setInitialQuoteData(initialData || null);
+        setIsQuoteModalOpen(true);
+        if (isCalculatorOpen) setIsCalculatorOpen(false);
     };
 
     return (
@@ -29,14 +36,16 @@ function App() {
                 isOpen={isQuoteModalOpen}
                 onClose={() => setIsQuoteModalOpen(false)}
                 onSuccess={handleQuoteSuccess}
+                initialData={initialQuoteData}
             />
             <Calculator
                 isOpen={isCalculatorOpen}
                 onClose={() => setIsCalculatorOpen(false)}
+                onBook={(data) => handleOpenQuote(data)}
             />
             <main>
                 <Hero
-                    onOpenQuote={() => setIsQuoteModalOpen(true)}
+                    onOpenQuote={() => handleOpenQuote()}
                     onOpenCalculator={() => setIsCalculatorOpen(true)}
                 />
 

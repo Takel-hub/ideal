@@ -5,9 +5,10 @@ interface QuoteModalProps {
     isOpen: boolean;
     onClose: () => void;
     onSuccess: (data: any) => void;
+    initialData?: any;
 }
 
-export const QuoteModal = ({ isOpen, onClose, onSuccess }: QuoteModalProps) => {
+export const QuoteModal = ({ isOpen, onClose, onSuccess, initialData }: QuoteModalProps) => {
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -23,7 +24,7 @@ export const QuoteModal = ({ isOpen, onClose, onSuccess }: QuoteModalProps) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoadingCity, setIsLoadingCity] = useState(false);
 
-    // Reset form when opening
+    // Reset form when opening, merge with initialData if provided
     useEffect(() => {
         if (isOpen) {
             setFormData({
@@ -33,12 +34,12 @@ export const QuoteModal = ({ isOpen, onClose, onSuccess }: QuoteModalProps) => {
                 street: '',
                 zip: '',
                 city: '',
-                consumption: 'T.ex. 15000',
+                consumption: initialData?.consumption ? initialData.consumption.toString() : 'T.ex. 15000',
                 gdpr: false
             });
             setErrors({});
         }
-    }, [isOpen]);
+    }, [isOpen, initialData]);
 
     // Zip Code Lookup
     useEffect(() => {
