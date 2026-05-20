@@ -45,7 +45,7 @@ export const Calculator = ({ isOpen, onClose, onBook }: CalculatorProps) => {
     const YIELD_PER_KW = 950; // kWh/kWp in Stockholm
     const SELF_USE_RATIO = profile === 'Hemma dagtid' ? 0.5 : 0.35;
     const ELEC_PRICE_BUY = spotPrice + 1.50; // Spot + tax, transport, etc
-    const ELEC_PRICE_SELL = spotPrice + 0.60; // Spot + 60 öre skattereduktion
+    const ELEC_PRICE_SELL = spotPrice; // Endast spotpris (skattereduktionen på 60 öre är borttagen)
 
     // Battery / Tariff Logic
     // Rule of thumb: 1 kWh battery capacity can reduce peak by ~0.4 kW.
