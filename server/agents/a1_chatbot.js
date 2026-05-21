@@ -1,6 +1,8 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require('dotenv').config();
 
+const { sendEmail } = require('./a6_email'); // Import the Email Agent for alerts
+
 // Initialize Gemini
 // Defaults to a placeholder if key is missing to prevent crash on startup, 
 // but handleChat will check for it.
@@ -18,7 +20,7 @@ async function handleChat(message) {
     }
 
     try {
-        // Use the highly available Gemini 2.0 Flash model
+        // Try the primary model
         const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
         const systemPrompt = `
@@ -62,15 +64,30 @@ async function handleChat(message) {
 
         return {
             response: text,
-            // Gemini doesn't give "choices" natively, so we infer them or let the frontend handle it
             choices: []
         };
 
     } catch (error) {
         console.error("A1 CRITICAL Error calling Gemini:", error.message, error);
+        
+        // Automatically alert the admin via the Email Agent!
+        try {
+            await sendEmail(
+                'hej@takel.se',
+                '🚨 Larm: Fel på Takel-chatboten',
+                `<p>Chatboten kunde inte svara en kund på grund av ett API-fel mot Google Gemini.</p>
+                 <p><strong>Felmeddelande:</strong> ${error.message}</p>
+                 <p><strong>Stack:</strong> ${error.stack}</p>
+                 <p><small>Detta är ett automatiskt larm från systemet.</small></p>`
+            );
+        } catch(e) {
+            console.error("Could not send alert email:", e);
+        }
+
+        // Return a friendly, non-technical fallback response to the customer
         return {
-            response: `Oj, jag tappade tanken lite. (Error: ${error.message || 'Unknown'})`,
-            choices: ['Ja, boka hembesök']
+            response: `Ursäkta, min AI-hjärna har just nu en tillfällig kafferast på grund av mycket hög trafik på servrarna. Men jag kan fortfarande hjälpa dig att boka in ett hembesök! Vill du göra det?`,
+            choices: ['Ja, boka hembesök', 'Nej tack']
         };
     }
 }
