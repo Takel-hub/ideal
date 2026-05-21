@@ -218,9 +218,17 @@ export const Calculator = ({ isOpen, onClose, onBook }: CalculatorProps) => {
                                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-600"
                             />
                             {todaySpotPrice !== null && (
-                                <p className="text-xs text-gray-500 mt-1">
-                                    Beräknat på elpriset idag: <span className="font-bold">{todaySpotPrice.toFixed(2)} kr/kWh</span> i Stockholm (SE3)
-                                </p>
+                                <div className="flex items-center justify-between mt-1">
+                                    <p className="text-xs text-gray-500">
+                                        Beräknat på elpriset idag: <span className="font-bold">{todaySpotPrice.toFixed(2)} kr/kWh</span> i Stockholm (SE3)
+                                    </p>
+                                    <button 
+                                        onClick={() => setSpotPrice(todaySpotPrice)}
+                                        className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded hover:bg-orange-200 transition-colors font-medium whitespace-nowrap ml-2"
+                                    >
+                                        Dagens elpris
+                                    </button>
+                                </div>
                             )}
                         </div>
 
