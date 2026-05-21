@@ -20,8 +20,8 @@ async function handleChat(message) {
     }
 
     try {
-        // Try the primary model
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        // Use 'gemini-flash-latest' which works while billing quota propagates
+        const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
         const systemPrompt = `
         Du är Hans Nilsson, en vänlig och kunnig solcellsexpert från Takel.se.
