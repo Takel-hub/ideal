@@ -68,6 +68,7 @@ function App() {
                             onOpenQuote={() => handleOpenQuote()} 
                             onOpenCalculator={() => setIsCalculatorOpen(true)} 
                             onQuoteSuccess={handleQuoteSuccess}
+                            onSelectPackage={(pkg) => setSelectedPackage(pkg)}
                         />
                     } />
                 </Routes>

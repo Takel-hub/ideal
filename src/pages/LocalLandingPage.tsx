@@ -5,14 +5,16 @@ import { Features } from '../components/Features';
 import { ContactForm } from '../components/ContactForm';
 import { Installations } from '../components/Installations';
 import { Testimonials } from '../components/Testimonials';
+import { Packages } from '../components/Packages';
 
 interface LocalLandingPageProps {
     onOpenQuote: () => void;
     onOpenCalculator: () => void;
     onQuoteSuccess: (data: any) => void;
+    onSelectPackage?: (pkg: string) => void;
 }
 
-export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess }: LocalLandingPageProps) => {
+export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess, onSelectPackage }: LocalLandingPageProps) => {
     const { ort } = useParams<{ ort: string }>();
     
     // Formatera ortsnamnet (t.ex. "taby" -> "Täby")
@@ -98,6 +100,7 @@ export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess
                 </div>
             </section>
 
+            <Packages onSelectPackage={onSelectPackage} />
             <Features />
             <ContactForm onSuccess={onQuoteSuccess} />
         </main>
