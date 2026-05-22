@@ -10,6 +10,7 @@ import { CookieBanner } from './components/CookieBanner';
 
 import { HomePage } from './pages/HomePage';
 import { LocalLandingPage } from './pages/LocalLandingPage';
+import { ArticlePage } from './pages/ArticlePage';
 
 function App() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -69,6 +70,12 @@ function App() {
                             onOpenCalculator={() => setIsCalculatorOpen(true)} 
                             onQuoteSuccess={handleQuoteSuccess}
                             onSelectPackage={(pkg) => setSelectedPackage(pkg)}
+                        />
+                    } />
+                    <Route path="/:articleId" element={
+                        <ArticlePage 
+                            onOpenQuote={() => handleOpenQuote()} 
+                            onQuoteSuccess={handleQuoteSuccess}
                         />
                     } />
                 </Routes>
