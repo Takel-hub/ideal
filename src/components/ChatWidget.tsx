@@ -574,7 +574,11 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
                             <p>Vi på Takel kommer kontakta dig inom kort för att prata om nästa steg.</p>
                             <br>
                             <p>Med vänlig hälsning,</p>
+                            <p>Hans Nilsson</p>
                             <p>Takel AB</p>
+                            <p>Timmermansvägen 1B</p>
+                            <p>185 34 Vaxholm</p>
+                            <p>070-870 42 33</p>
                             <hr>
                             <p><small>Admin-kopia: Ny lead. Namn: ${bookingData.name}, Tel: ${bookingData.phone}, Email: ${bookingData.email}, Paket: ${bookingData.package}</small></p>
                         `
@@ -751,7 +755,11 @@ Stämmer detta?`;
                             <p>Om ni får förhinder når ni Hans på 070-870 42 33.</p>
                             <br>
                             <p>Med vänlig hälsning,</p>
+                            <p>Hans Nilsson</p>
                             <p>Takel AB</p>
+                            <p>Timmermansvägen 1B</p>
+                            <p>185 34 Vaxholm</p>
+                            <p>070-870 42 33</p>
                             <hr>
                             <p><small>Admin-kopia: Ny bokning mottagen.</small></p>
                         `
