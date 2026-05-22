@@ -383,6 +383,7 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
             const protectedPhrases = [
                 'jag godkänner',
                 'ja, boka nu',
+                'ja, skicka nu',
                 'välj annat datum',
                 'visa fler tider',
                 'solceller',
@@ -395,8 +396,8 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
                 // If we are here, it means the input didn't match a specific state handler below
                 // (or we are in a state that treats everything as text, like 'details_name').
 
-                // Specific Check: 'Jag godkänner' is only valid in 'gdpr_consent'
-                if (lowerInput === 'jag godkänner' && bookingState !== 'gdpr_consent') {
+                // Specific Check: 'Jag godkänner' is only valid in 'gdpr_consent' flows
+                if (lowerInput === 'jag godkänner' && bookingState !== 'gdpr_consent' && bookingState !== 'gdpr_consent_email_only') {
                     botResponse.text = "Det valet är inte aktuellt just nu. Låt oss fortsätta där vi var.";
                     setMessages(prev => [...prev, botResponse]);
                     setIsTyping(false);
@@ -406,6 +407,14 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
                 // Specific Check: 'Ja, boka nu' is only valid in 'confirmation'
                 if (lowerInput === 'ja, boka nu' && bookingState !== 'confirmation') {
                     botResponse.text = "Vi är inte riktigt klara för bokning än. Jag behöver lite mer uppgifter först.";
+                    setMessages(prev => [...prev, botResponse]);
+                    setIsTyping(false);
+                    return;
+                }
+
+                // Specific Check: 'Ja, skicka nu' is only valid in 'confirmation_email_only'
+                if (lowerInput === 'ja, skicka nu' && bookingState !== 'confirmation_email_only') {
+                    botResponse.text = "Vi är inte riktigt klara för att skicka än. Jag behöver lite mer uppgifter först.";
                     setMessages(prev => [...prev, botResponse]);
                     setIsTyping(false);
                     return;
