@@ -66,7 +66,7 @@ export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess
                         </p>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-start justify-center gap-4">
                         <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
                             <button
                                 onClick={onOpenCalculator}
@@ -75,6 +75,16 @@ export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess
                                 Beräkna din besparing på 30 sekunder
                             </button>
                             <span className="text-xs text-gray-400">Helt kostnadsfritt och utan förbindelser.</span>
+                        </div>
+
+                        <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
+                            <button
+                                onClick={onOpenQuote}
+                                className="w-full sm:w-auto bg-white border-2 border-orange-600 text-orange-600 hover:bg-orange-50 text-lg font-bold py-4 px-8 rounded-lg shadow-lg transition-transform hover:-translate-y-1"
+                            >
+                                Boka hembesök
+                            </button>
+                            <span className="text-xs text-transparent select-none">Spacer</span>
                         </div>
                     </div>
                 </div>
