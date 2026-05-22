@@ -579,8 +579,6 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
                             <p>Timmermansvägen 1B</p>
                             <p>185 34 Vaxholm</p>
                             <p>070-870 42 33</p>
-                            <hr>
-                            <p><small>Admin-kopia: Ny lead. Namn: ${bookingData.name}, Tel: ${bookingData.phone}, Email: ${bookingData.email}, Paket: ${bookingData.package}</small></p>
                         `
                     });
                     
@@ -760,8 +758,6 @@ Stämmer detta?`;
                             <p>Timmermansvägen 1B</p>
                             <p>185 34 Vaxholm</p>
                             <p>070-870 42 33</p>
-                            <hr>
-                            <p><small>Admin-kopia: Ny bokning mottagen.</small></p>
                         `
                     });
 
