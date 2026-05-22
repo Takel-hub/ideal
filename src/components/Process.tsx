@@ -46,7 +46,7 @@ const popupContent = {
                     </div>
                 </div>
                 <div className="pt-2 text-center">
-                    <a href="https://www.google.com/search?q=takel+ab+vaxholm" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-orange-600 font-bold hover:text-orange-700 underline underline-offset-4">
+                    <a href="https://www.google.com/maps/search/Takel+AB" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-orange-600 font-bold hover:text-orange-700 underline underline-offset-4">
                         Läs alla recensioner på Google <Star className="w-4 h-4 fill-current" />
                     </a>
                 </div>
