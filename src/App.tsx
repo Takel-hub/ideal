@@ -17,6 +17,7 @@ function App() {
     const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
     const [quoteData, setQuoteData] = useState<any>(null);
     const [initialQuoteData, setInitialQuoteData] = useState<any>(null);
+    const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
     const handleQuoteSuccess = (data: any) => {
         setQuoteData(data);
@@ -32,7 +33,7 @@ function App() {
         <Router>
             <div className="min-h-screen bg-background font-sans text-text">
                 <Header />
-                <ChatWidget quoteData={quoteData} onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
+                <ChatWidget quoteData={quoteData} selectedPackage={selectedPackage} onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
                 
                 <QuoteModal
                     isOpen={isQuoteModalOpen}
@@ -59,6 +60,7 @@ function App() {
                             onOpenQuote={() => handleOpenQuote()} 
                             onOpenCalculator={() => setIsCalculatorOpen(true)} 
                             onQuoteSuccess={handleQuoteSuccess}
+                            onSelectPackage={(pkg) => setSelectedPackage(pkg)}
                         />
                     } />
                     <Route path="/solceller/:ort" element={

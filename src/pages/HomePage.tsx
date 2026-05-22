@@ -9,9 +9,10 @@ interface HomePageProps {
     onOpenQuote: () => void;
     onOpenCalculator: () => void;
     onQuoteSuccess: (data: any) => void;
+    onSelectPackage?: (pkg: string) => void;
 }
 
-export const HomePage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess }: HomePageProps) => {
+export const HomePage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess, onSelectPackage }: HomePageProps) => {
     return (
         <main>
             <Hero
@@ -21,7 +22,7 @@ export const HomePage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess }: Home
 
             <Process />
             <Installations />
-            <Packages />
+            <Packages onSelectPackage={onSelectPackage} />
             <Features />
             <ContactForm onSuccess={onQuoteSuccess} />
         </main>

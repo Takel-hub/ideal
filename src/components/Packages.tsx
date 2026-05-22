@@ -1,7 +1,10 @@
-
 import { Zap, Star } from 'lucide-react';
 
-export const Packages = () => {
+interface PackagesProps {
+    onSelectPackage?: (packageName: string) => void;
+}
+
+export const Packages = ({ onSelectPackage }: PackagesProps) => {
     return (
         <section className="py-20 bg-background" id="paket">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -28,7 +31,7 @@ export const Packages = () => {
                             <li className="flex items-center gap-2"><Zap className="w-4 h-4 text-orange-400" /> Uppföljning via app</li>
                         </ul>
 
-                        <button className="w-full py-3 border-2 border-orange-200 text-orange-700 font-bold rounded-lg hover:bg-orange-50 transition-colors">
+                        <button onClick={() => onSelectPackage?.('Start')} className="w-full py-3 border-2 border-orange-200 text-orange-700 font-bold rounded-lg hover:bg-orange-50 transition-colors">
                             Välj Start
                         </button>
                     </div>
@@ -53,7 +56,7 @@ export const Packages = () => {
                             <li className="flex items-center gap-2"><Zap className="w-4 h-4 text-orange-400" /> Support</li>
                         </ul>
 
-                        <button className="w-full py-3 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 transition-colors shadow-md">
+                        <button onClick={() => onSelectPackage?.('Familj')} className="w-full py-3 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 transition-colors shadow-md">
                             Välj Familj
                         </button>
                     </div>
@@ -73,7 +76,7 @@ export const Packages = () => {
                             <li className="flex items-center gap-2"><Zap className="w-4 h-4 text-orange-400" /> Sälj dyr el, ladda billigt på natten</li>
                         </ul>
 
-                        <button className="w-full py-3 border-2 border-orange-200 text-orange-700 font-bold rounded-lg hover:bg-orange-50 transition-colors">
+                        <button onClick={() => onSelectPackage?.('Framtidssäkrad Villa')} className="w-full py-3 border-2 border-orange-200 text-orange-700 font-bold rounded-lg hover:bg-orange-50 transition-colors">
                             Välj Helhetspaketet
                         </button>
                     </div>

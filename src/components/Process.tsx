@@ -8,12 +8,12 @@ const steps = [
     },
     {
         title: "Skräddarsydd offert",
-        description: "Inom kort får du ett detaljerat förslag med fast pris, beräknad besparing och en 3D-skiss på hur solpanelerna kommer se ut på ditt tak.",
+        description: "Inom kort får du ett detaljerat förslag med fast pris, beräknad besparing och en skiss på hur solpanelerna kommer se ut på ditt tak.",
         icon: FileText,
     },
     {
         title: "Installation på 2 veckor",
-        description: "När du säger ja så kör vi! Våra egna certifierade montörer och elektriker installerar vanligtvis allt inom två veckor från beställning.",
+        description: "När du säger ja så kör vi! Våra certifierade montörer och elektriker installerar vanligtvis allt inom två veckor från beställning.",
         icon: Wrench,
     },
     {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Zap, Award, Star, Sun, X } from 'lucide-react';
+import { Zap, Award, Star, Sun, X, BatteryCharging } from 'lucide-react';
 
 export const Features = () => {
     const [selectedFeature, setSelectedFeature] = useState<any>(null);
@@ -44,6 +44,16 @@ export const Features = () => {
                 title: "Premium utrustning",
                 text: "Kvalitet lönar sig i längden. Vi samarbetar enbart med marknadens ledande tillverkare av solpaneler, växelriktare och batterier. Det innebär att du får produkter med hög verkningsgrad, lång livslängd och marknadsledande garantitider för din trygghet."
             }
+        },
+        {
+            id: 'evcharger',
+            icon: BatteryCharging,
+            title: "Smart Elbilsladdare",
+            desc: "Vi erbjuder och installerar smarta laddboxar för din elbil",
+            modalContent: {
+                title: "Ladda elbilen på egenproducerad el",
+                text: "Att ladda elbilen hemma blir både billigare och smartare när du har solceller. Vi erbjuder installation av marknadsledande laddboxar som kan styras smart efter elpriset eller när solen skiner. En perfekt komplettering till ditt solcellspaket för att bli ännu mer självförsörjande."
+            }
         }
     ];
 
@@ -72,7 +82,7 @@ export const Features = () => {
                     <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">Välj Takel:</h2>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {features.map((feature, index) => (
                         <div
                             key={index}

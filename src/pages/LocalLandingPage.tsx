@@ -60,7 +60,7 @@ export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess
                             Spara 10 000-30 000 kr/år <span className="text-gray-600 font-normal">med solenergi</span>
                         </p>
                         <p className="text-gray-500 text-lg">
-                            Säkra ditt Gröna Teknikavdrag för 2024. Få upp till 50% skattereduktion direkt på fakturan.
+                            Säkra ditt Gröna Teknikavdrag för 2026. Få upp till 50% skattereduktion direkt på fakturan.
                         </p>
                     </div>
 

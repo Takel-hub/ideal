@@ -19,7 +19,7 @@ interface BookingData {
     fullAddress?: string;
 }
 
-export const ChatWidget = ({ quoteData, onOpenPrivacy }: { quoteData?: any; onOpenPrivacy?: () => void }) => {
+export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quoteData?: any; selectedPackage?: string | null; onOpenPrivacy?: () => void }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
         {
@@ -65,6 +65,22 @@ export const ChatWidget = ({ quoteData, onOpenPrivacy }: { quoteData?: any; onOp
             setBookingState('quote_followup');
         }
     }, [quoteData]);
+
+    // Handle Package Selection Injection
+    useEffect(() => {
+        if (selectedPackage) {
+            setIsOpen(true);
+            const botMsg: Message = {
+                id: Date.now(),
+                sender: 'bot',
+                text: `Snyggt val! Du har valt paketet **${selectedPackage}**. Vill du boka in en tid för ett gratis hembesök direkt, eller vill du bara mejla oss så kontaktar vi dig?`,
+                choices: ['Boka hembesök', 'Mejla mig istället']
+            };
+            setBookingData(prev => ({ ...prev, package: selectedPackage }));
+            setMessages(prev => [...prev, botMsg]);
+            setBookingState('package_followup');
+        }
+    }, [selectedPackage]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -324,11 +340,21 @@ export const ChatWidget = ({ quoteData, onOpenPrivacy }: { quoteData?: any; onOp
             }
 
             // 2. Restart / New Booking
-            if (input === 'Ja, boka hembesök' || lowerInput.includes('boka hembesök') || (lowerInput.includes('boka') && bookingState === 'none')) {
-                setBookingData({});
+            if (input === 'Ja, boka hembesök' || lowerInput === 'boka hembesök' || (lowerInput.includes('boka') && bookingState === 'none')) {
+                // Preserve package selection if it exists
+                setBookingData(prev => ({ package: prev.package }));
                 // SKIP Time of Day Selection -> Go straight to Calendar
                 botResponse.text = 'Absolut! Här är lediga tider i kalendern. De gröna tiderna är lediga att boka:';
                 setBookingState('date_selection');
+                setMessages(prev => [...prev, botResponse]);
+                setIsTyping(false);
+                return;
+            }
+
+            // 2.5 Mail Option
+            if (lowerInput === 'mejla mig istället') {
+                botResponse.text = "Inga problem! Vad är ditt för- och efternamn så vi vet vem vi ska kontakta?";
+                setBookingState('details_name_email_only');
                 setMessages(prev => [...prev, botResponse]);
                 setIsTyping(false);
                 return;
@@ -497,6 +523,62 @@ export const ChatWidget = ({ quoteData, onOpenPrivacy }: { quoteData?: any; onOp
                     botResponse.text = "Tack! Vad är ditt för- och efternamn?";
                     setBookingState('details_name');
                 }
+                // --- NEW EMAIL ONLY FLOW ---
+                else if (bookingState === 'details_name_email_only') {
+                    if (input.trim().split(' ').length < 2) {
+                        botResponse.text = "Förlåt, jag behöver både för- och efternamn för att vi ska kunna kontakta dig. Försök igen! 🙂";
+                    } else {
+                        setBookingData({ ...bookingData, name: input });
+                        botResponse.text = `Tack ${input.split(' ')[0]}. Vilket telefonnummer kan Hans nå dig på?`;
+                        setBookingState('details_phone_email_only');
+                    }
+                }
+                else if (bookingState === 'details_phone_email_only') {
+                    setBookingData({ ...bookingData, phone: input });
+                    botResponse.text = "Utmärkt. Och vilken e-postadress ska vi använda?";
+                    setBookingState('details_email_email_only');
+                }
+                else if (bookingState === 'details_email_email_only') {
+                    if (!input.includes('@')) {
+                        botResponse.text = "Det ser inte ut som en giltig e-postadress. Försök igen! 📧";
+                    } else {
+                        setBookingData({ ...bookingData, email: input });
+                        botResponse.text = `Perfekt! Innan jag skickar din förfrågan för paketet "${bookingData.package}" måste du godkänna vår Integritetspolicy. Läs gärna vår [Integritetspolicy] för mer information.`;
+                        botResponse.choices = ['Jag godkänner'];
+                        setBookingState('gdpr_consent_email_only');
+                    }
+                }
+                else if (bookingState === 'gdpr_consent_email_only' && input === 'Jag godkänner') {
+                    botResponse.text = `Toppen! Då skickar jag ett meddelande till Takel om att du är intresserad av paketet ${bookingData.package}. De kontaktar dig! Ska jag skicka iväg det nu?`;
+                    botResponse.choices = ['Ja, skicka nu', 'Avbryt'];
+                    setBookingState('confirmation_email_only');
+                }
+                else if (bookingState === 'confirmation_email_only' && input === 'Ja, skicka nu') {
+                    // Send Email to Admin and Customer
+                    await callApi('/email/send', 'POST', {
+                        to: ['hej@takel.se', bookingData.email],
+                        subject: `Ny intresseanmälan - Paket: ${bookingData.package}`,
+                        body: `
+                            <p>Hej!</p>
+                            <p>Tack för ditt intresse av vårt solcellspaket: <strong>${bookingData.package}</strong>.</p>
+                            <p>Vi på Takel kommer kontakta dig inom kort för att prata om nästa steg.</p>
+                            <br>
+                            <p>Med vänlig hälsning,</p>
+                            <p>Takel AB</p>
+                            <hr>
+                            <p><small>Admin-kopia: Ny lead. Namn: ${bookingData.name}, Tel: ${bookingData.phone}, Email: ${bookingData.email}, Paket: ${bookingData.package}</small></p>
+                        `
+                    });
+                    
+                    botResponse.text = "Fantastiskt! 🎉 Jag har skickat ditt intresse till Hans och du har också fått en kopia via mail. Vi hörs snart!";
+                    botResponse.choices = ['Stäng chatt'];
+                    setBookingState('done');
+                }
+                else if (bookingState === 'confirmation_email_only' && input === 'Avbryt') {
+                    botResponse.text = "Okej, vi skickar inget nu. Säg till när du är redo!";
+                    setBookingState('none');
+                }
+                // --- END EMAIL ONLY FLOW ---
                 else if (bookingState === 'details_name') {
                     if (input.trim().split(' ').length < 2) {
                         botResponse.text = "Förlåt, jag behöver både för- och efternamn för bokningen. Försök igen! 🙂";
