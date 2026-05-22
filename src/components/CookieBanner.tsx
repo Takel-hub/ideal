@@ -22,6 +22,7 @@ export const CookieBanner = ({ onOpenPrivacy }: CookieBannerProps) => {
 
     const initAnalytics = () => {
         const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // TODO: Replace with real Google Analytics ID
+        const FB_PIXEL_ID = 'XXXXXXXXXXXXXXX'; // TODO: Replace with real Facebook Pixel ID
         
         // Inject Google Analytics script if not already present
         if (!document.getElementById('ga-script')) {
@@ -39,6 +40,25 @@ export const CookieBanner = ({ onOpenPrivacy }: CookieBannerProps) => {
                 gtag('config', '${GA_MEASUREMENT_ID}');
             `;
             document.head.appendChild(script2);
+        }
+
+        // Inject Facebook Pixel if not already present
+        if (!document.getElementById('fb-pixel-script')) {
+            const fbScript = document.createElement('script');
+            fbScript.id = 'fb-pixel-script';
+            fbScript.innerHTML = `
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '${FB_PIXEL_ID}');
+                fbq('track', 'PageView');
+            `;
+            document.head.appendChild(fbScript);
         }
     };
 

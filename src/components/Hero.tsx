@@ -29,10 +29,10 @@ export const Hero = ({ onOpenQuote, onOpenCalculator }: HeroProps) => {
 
                 <div className="space-y-4 mb-10">
                     <p className="text-2xl md:text-3xl font-bold text-orange-600">
-                        Spara 10 000-30 000 kr/år <span className="text-gray-600 font-normal">på din elräkning</span>
+                        Spara 10 000-30 000 kr/år <span className="text-gray-600 font-normal">med solenergi</span>
                     </p>
                     <p className="text-gray-500 text-lg">
-                        Plus upp till 50% skattereduktion i <a href="https://www.skatteverket.se/privat/fastigheterochbostad/gronteknik.4.676f4884175c97df4192860.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-orange-600">Grönt Teknikavdrag*</a>
+                        Säkra ditt Gröna Teknikavdrag för 2024. Få upp till 50% skattereduktion direkt på fakturan.
                     </p>
                 </div>
 
@@ -40,22 +40,21 @@ export const Hero = ({ onOpenQuote, onOpenCalculator }: HeroProps) => {
                 <div className="flex flex-col sm:flex-row items-start justify-center gap-4">
                     <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
                         <button
-                            onClick={onOpenQuote}
+                            onClick={onOpenCalculator}
                             className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white text-lg font-bold py-4 px-8 rounded-lg shadow-lg transition-transform hover:-translate-y-1"
                         >
-                            Boka kostnadsfritt hembesök
+                            Beräkna din besparing på 30 sekunder
                         </button>
-                        <span className="text-xs text-gray-400">Vi kommer ut och ger råd. Inget köptvång.</span>
+                        <span className="text-xs text-gray-400">Helt kostnadsfritt och utan förbindelser.</span>
                     </div>
 
                     <div className="flex flex-col items-center gap-2 w-full sm:w-auto">
                         <button
-                            onClick={onOpenCalculator}
-                            className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white text-lg font-bold py-4 px-8 rounded-lg shadow-lg transition-transform hover:-translate-y-1"
+                            onClick={onOpenQuote}
+                            className="w-full sm:w-auto bg-white border-2 border-orange-600 text-orange-600 hover:bg-orange-50 text-lg font-bold py-4 px-8 rounded-lg shadow-lg transition-transform hover:-translate-y-1"
                         >
-                            Beräkna min besparing
+                            Boka hembesök
                         </button>
-                        {/* Spacer to align with the subtitle on the left button if needed, or just keep buttons aligned at top */}
                         <span className="text-xs text-transparent select-none">Spacer</span>
                     </div>
                 </div>
