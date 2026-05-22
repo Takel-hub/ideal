@@ -21,17 +21,19 @@ export const Header = () => {
                     <a href="/#paket" className="hover:text-orange-800 transition-colors">Paket</a>
                     <div className="relative" onMouseLeave={() => setIsDropdownOpen(false)}>
                         <button 
-                            className="flex items-center gap-1 hover:text-orange-800 transition-colors focus:outline-none"
+                            className="flex items-center gap-1 hover:text-orange-800 transition-colors focus:outline-none h-16"
                             onMouseEnter={() => setIsDropdownOpen(true)}
                         >
                             Kunskapsbank <ChevronDown className="w-4 h-4" />
                         </button>
                         {isDropdownOpen && (
-                            <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-lg border border-orange-100 py-2 flex flex-col z-50">
-                                <a href="/growatt-batteri" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">Growatt Smarta Batterier</a>
-                                <a href="/growatt-smart-styrning" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">AI Smart Styrning</a>
-                                <a href="/stodtjanster" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">Stödtjänster & Grönt Avdrag</a>
-                                <a href="/growatt-support" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">Support & Wi-Fi</a>
+                            <div className="absolute top-full left-0 w-64 pt-2 z-50">
+                                <div className="bg-white shadow-xl rounded-lg border border-orange-100 py-2 flex flex-col">
+                                    <a href="/growatt-batteri" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">Growatt Smarta Batterier</a>
+                                    <a href="/growatt-smart-styrning" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">AI Smart Styrning</a>
+                                    <a href="/stodtjanster" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">Stödtjänster & Grönt Avdrag</a>
+                                    <a href="/growatt-support" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">Support & Wi-Fi</a>
+                                </div>
                             </div>
                         )}
                     </div>
