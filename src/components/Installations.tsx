@@ -79,8 +79,19 @@ const installations = [
     }
 ];
 
-export const Installations = () => {
+interface InstallationsProps {
+    cityFilter?: string;
+}
+
+export const Installations = ({ cityFilter }: InstallationsProps) => {
     const [selectedStory, setSelectedStory] = useState<typeof installations[0] | null>(null);
+
+    // Filtrera på stad om cityFilter finns, annars visa alla. Om inga hittas i staden, visa alla som fallback.
+    const filteredInstallations = cityFilter 
+        ? installations.filter(i => i.location.toLowerCase() === cityFilter.toLowerCase())
+        : installations;
+    
+    const displayInstallations = filteredInstallations.length > 0 ? filteredInstallations : installations;
 
     return (
         <section className="py-20 bg-gray-50" id="installationer">
@@ -93,7 +104,7 @@ export const Installations = () => {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {installations.map((item, index) => (
+                    {displayInstallations.map((item, index) => (
                         <div
                             key={index}
                             className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group cursor-pointer"

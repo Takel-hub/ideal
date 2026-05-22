@@ -22,7 +22,7 @@ export const Footer = ({ onOpenPrivacy }: FooterProps) => {
                 {/* Contact */}
                 <div className="space-y-4">
                     <h4 className="font-bold text-lg">Kontakt</h4>
-                    <div className="space-y-3 thext-sm text-gray-400">
+                    <div className="space-y-3 text-sm text-gray-400">
                         <a href="tel:0708704233" className="flex items-center gap-3 hover:text-orange-500 transition-colors">
                             <Phone className="w-4 h-4" />
                             <span>070-870 42 33</span>
@@ -36,6 +36,17 @@ export const Footer = ({ onOpenPrivacy }: FooterProps) => {
                             <span>Stockholm, Sverige</span>
                         </div>
                     </div>
+                </div>
+
+                {/* Lokalt */}
+                <div className="space-y-4">
+                    <h4 className="font-bold text-lg">Lokalt</h4>
+                    <ul className="space-y-2 text-sm text-gray-400">
+                        <li><a href="/solceller/vaxholm" className="hover:text-orange-500 transition-colors">Solceller i Vaxholm</a></li>
+                        <li><a href="/solceller/taby" className="hover:text-orange-500 transition-colors">Solceller i Täby</a></li>
+                        <li><a href="/solceller/jarfalla" className="hover:text-orange-500 transition-colors">Solceller i Järfälla</a></li>
+                        <li><a href="/solceller/huddinge" className="hover:text-orange-500 transition-colors">Solceller i Huddinge</a></li>
+                    </ul>
                 </div>
 
                 {/* Legal */}

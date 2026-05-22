@@ -47,18 +47,28 @@ const testimonials = [
     }
 ];
 
-export const Testimonials = () => {
+interface TestimonialsProps {
+    cityFilter?: string;
+}
+
+export const Testimonials = ({ cityFilter }: TestimonialsProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const filteredTestimonials = cityFilter
+        ? testimonials.filter(t => t.location.toLowerCase() === cityFilter.toLowerCase())
+        : testimonials;
+        
+    const displayTestimonials = filteredTestimonials.length > 0 ? filteredTestimonials : testimonials;
+
     const next = (e: React.MouseEvent) => {
         e.stopPropagation();
-        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+        setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length);
     };
 
     const prev = (e: React.MouseEvent) => {
         e.stopPropagation();
-        setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+        setCurrentIndex((prev) => (prev - 1 + displayTestimonials.length) % displayTestimonials.length);
     };
 
     return (
@@ -81,10 +91,10 @@ export const Testimonials = () => {
                         </button>
 
                         <div className="flex flex-col items-center text-center">
-                            {testimonials[currentIndex].image ? (
+                            {displayTestimonials[currentIndex].image ? (
                                 <img
-                                    src={testimonials[currentIndex].image}
-                                    alt={testimonials[currentIndex].name}
+                                    src={displayTestimonials[currentIndex].image}
+                                    alt={displayTestimonials[currentIndex].name}
                                     className="w-24 h-24 rounded-full object-cover mb-6 border-4 border-orange-100 shadow-sm"
                                 />
                             ) : (
@@ -93,13 +103,13 @@ export const Testimonials = () => {
 
                             <div className="min-h-[150px] flex items-center justify-center">
                                 <p className="text-xl md:text-2xl text-gray-700 font-light italic leading-relaxed">
-                                    "{testimonials[currentIndex].text}"
+                                    "{displayTestimonials[currentIndex].text}"
                                 </p>
                             </div>
 
                             <div className="mt-8">
-                                <h4 className="text-lg font-bold text-gray-900">{testimonials[currentIndex].name}</h4>
-                                <p className="text-orange-600">{testimonials[currentIndex].location}</p>
+                                <h4 className="text-lg font-bold text-gray-900">{displayTestimonials[currentIndex].name}</h4>
+                                <p className="text-orange-600">{displayTestimonials[currentIndex].location}</p>
                             </div>
 
                             <div className="flex gap-4 mt-8">
@@ -110,7 +120,7 @@ export const Testimonials = () => {
                                     <ChevronLeft className="w-6 h-6" />
                                 </button>
                                 <div className="flex gap-2 items-center">
-                                    {testimonials.map((_, idx) => (
+                                    {displayTestimonials.map((_, idx) => (
                                         <div
                                             key={idx}
                                             className={`w-2 h-2 rounded-full transition-colors ${idx === currentIndex ? 'bg-orange-500' : 'bg-gray-200'

@@ -3,6 +3,8 @@ import { Star, ArrowRight } from 'lucide-react';
 import { Process } from '../components/Process';
 import { Features } from '../components/Features';
 import { ContactForm } from '../components/ContactForm';
+import { Installations } from '../components/Installations';
+import { Testimonials } from '../components/Testimonials';
 
 interface LocalLandingPageProps {
     onOpenQuote: () => void;
@@ -45,6 +47,7 @@ export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess
                                 Din lokala solcellspartner i {cityName}
                                 <Star className="w-4 h-4 fill-current" />
                             </div>
+                            <Testimonials cityFilter={cityName} />
                         </div>
                     </div>
 
@@ -77,6 +80,8 @@ export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess
 
             <Process />
             
+            <Installations cityFilter={cityName} />
+
             {/* Enkel Sektion som bygger lokalt förtroende */}
             <section className="py-20 bg-orange-50">
                 <div className="max-w-4xl mx-auto px-6 text-center">
