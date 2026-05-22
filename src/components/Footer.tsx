@@ -56,7 +56,7 @@ export const Footer = ({ onOpenPrivacy }: FooterProps) => {
                         <a href="https://www.facebook.com/profile.php?id=100089265523459" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white transition-all shadow-sm">
                             <Facebook className="w-5 h-5" />
                         </a>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#E4405F] hover:text-white transition-all shadow-sm">
+                        <a href="https://www.instagram.com/takel.se/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#E4405F] hover:text-white transition-all shadow-sm">
                             <Instagram className="w-5 h-5" />
                         </a>
                         <a href="https://www.google.com/search?sa=X&sca_esv=1683bac0e7c4926b&authuser=0&hl=sv&gl=se&sxsrf=ANbL-n637JDcUM1iKVC8BUNV_106-UOMkQ:1779477508482&q=Takel+AB+Recensioner&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDQ3tDSzMDWwMDOyNLI0NDK3MNrAyPiKUSQkMTs1R8HRSSEoNTk1rzgzPy-1aBErVmEAeqJZbEkAAAA&rldimm=11719685086292912782&tbm=lcl&ved=2ahUKEwicqJ2mzs2UAxXEFRAIHQcHDGoQ9fQKegQIYxAG&biw=2367&bih=1313&dpr=2#lkt=LocalPoiReviews" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-orange-500 hover:text-white transition-all shadow-sm" title="Google Recensioner">
