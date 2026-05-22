@@ -6,13 +6,13 @@ export const Header = () => {
     const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
     return (
-        <header className="w-full bg-white py-4 px-6 md:px-12 shadow-sm sticky top-0 z-50">
+        <header className="w-full bg-white py-4 px-6 md:px-12 shadow-sm sticky top-0 z-[100]">
             <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
                 {/* Logo */}
-                <div className="flex items-center gap-2 relative z-50">
+                <a href="/" className="flex items-center gap-2 relative z-50 hover:opacity-80 transition-opacity">
                     <Sun className="w-8 h-8 text-orange-600 animate-pulse" />
                     <span className="text-2xl font-bold text-orange-600 tracking-tight">Takel.se</span>
-                </div>
+                </a>
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-8 font-medium text-orange-600">

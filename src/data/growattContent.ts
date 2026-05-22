@@ -35,7 +35,7 @@ export const growattArticles: ArticleContent[] = [
         faqs: [
             {
                 question: 'Kan jag installera ett Growatt-batteri till mina befintliga solceller?',
-                answer: 'Ja, absolut. Om du redan har en kompatibel hybridväxelriktare från Growatt är det i princip bara att plugga in batterimodulerna. Om du har ett äldre solcellssystem av ett annat märke kan vi installera en så kallad AC-kopplad batteriväxelriktare vid sidan av ditt befintliga system. Det gör att du kan uppgradera till ett modernt Growatt-batteri oavsett vilket fabrikat du har på dina nuvarande solceller.'
+                answer: 'Ja, absolut. Om du har ett äldre solcellssystem av ett annat märke kan vi installera en smartmätare som kan hantera både er gamla växelriktare och den nya och det gör att du kan uppgradera till ett modernt Growatt-batteri oavsett vilket fabrikat du har på dina nuvarande solceller.'
             },
             {
                 question: 'Var är det bäst att placera Growatt-batteriet – inomhus eller utomhus?',
