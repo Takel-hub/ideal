@@ -6,7 +6,7 @@ const testimonials = [
         name: "Dag & Eva",
         location: "Viksjö",
         text: "Takel har installerat hos andra i vårt område och är både trevliga och proffsiga så att välja Takel var lätt för oss. Att på endast två veckor hade allt installerat och klart var mycket imponerande. Dessutom var det billigare än vi trodde!",
-        image: "https://takel.se/wp-content/uploads/2024/09/Takel_Solceller_Mandolinvagen_1_Skrattande_Dag__Eva-1.jpeg"
+        image: "/images/Takel_Solceller_Mandolinvagen_1_Skrattande_Dag__Eva-1.webp"
     },
     {
         name: "Tony & Katrin",
@@ -32,7 +32,7 @@ const testimonials = [
         name: "Hans & Ulla",
         location: "Järfälla",
         text: "Imponerad hur snabba ni är, från installerat till elektrikern var där och fick allt inkopplat. En av våra grannar fick vänta i flera månader och vi var inställda på att det ska ta så lång tid. Även er service efteråt är imponerande! Rekommenderar starkt!",
-        image: "https://takel.se/wp-content/uploads/2024/09/Takel-Solceller-Avstyckningsvagen-Jarfalla-Hans.jpeg"
+        image: "/images/Takel-Solceller-Avstyckningsvagen-Jarfalla-Hans.webp"
     },
     {
         name: "Olof",
@@ -43,7 +43,7 @@ const testimonials = [
         name: "Martin",
         location: "Huddinge",
         text: "Takel levererar klockren kundupplevelse och vi har inte kunnat hitta någon bättre. Utöver kundupplevelsen var ni otroligt snabba att leverera och installera. Även efteråt har er service varit i toppklass!",
-        image: "https://takel.se/wp-content/uploads/2024/11/Takel-Hemma-hos-Martin.jpeg"
+        image: "/images/Takel-Hemma-hos-Martin.webp"
     }
 ];
 

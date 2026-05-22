@@ -13,6 +13,8 @@ import { Calculator } from './components/Calculator';
 import { PrivacyModal } from './components/PrivacyModal';
 import { CookieBanner } from './components/CookieBanner';
 
+import { Process } from './components/Process';
+
 function App() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
     const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
@@ -61,6 +63,7 @@ function App() {
                     onOpenCalculator={() => setIsCalculatorOpen(true)}
                 />
 
+                <Process />
                 <Installations />
                 <Packages />
                 <Features />
