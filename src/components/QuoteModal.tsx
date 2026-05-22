@@ -6,9 +6,10 @@ interface QuoteModalProps {
     onClose: () => void;
     onSuccess: (data: any) => void;
     initialData?: any;
+    onOpenPrivacy?: () => void;
 }
 
-export const QuoteModal = ({ isOpen, onClose, onSuccess, initialData }: QuoteModalProps) => {
+export const QuoteModal = ({ isOpen, onClose, onSuccess, initialData, onOpenPrivacy }: QuoteModalProps) => {
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -271,7 +272,7 @@ export const QuoteModal = ({ isOpen, onClose, onSuccess, initialData }: QuoteMod
                                 <Check className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100" strokeWidth={3} />
                             </div>
                             <label htmlFor="gdpr" className="text-sm text-gray-600 cursor-pointer select-none">
-                                Jag godkänner att Takel sparar mina uppgifter för att kunna hantera min offertförfrågan. <span className="text-xs text-gray-400 block mt-1">(Ditt godkännande sparas säkert i vårt system)</span>
+                                Jag godkänner att Takel sparar mina uppgifter enligt er <button type="button" onClick={(e) => { e.preventDefault(); onOpenPrivacy?.(); }} className="text-orange-600 hover:underline">Integritetspolicy</button>. <span className="text-xs text-gray-400 block mt-1">(Ditt godkännande sparas säkert i vårt system)</span>
                             </label>
                         </div>
                         {errors.gdpr && <p className="text-xs text-red-500">{errors.gdpr}</p>}

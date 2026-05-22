@@ -10,10 +10,13 @@ import { Footer } from './components/Footer';
 import { ChatWidget } from './components/ChatWidget';
 import { QuoteModal } from './components/QuoteModal';
 import { Calculator } from './components/Calculator';
+import { PrivacyModal } from './components/PrivacyModal';
+import { CookieBanner } from './components/CookieBanner';
 
 function App() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
     const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+    const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
     const [quoteData, setQuoteData] = useState<any>(null);
     const [initialQuoteData, setInitialQuoteData] = useState<any>(null);
 
@@ -31,18 +34,27 @@ function App() {
     return (
         <div className="min-h-screen bg-background font-sans text-text">
             <Header />
-            <ChatWidget quoteData={quoteData} />
+            <ChatWidget quoteData={quoteData} onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
+            
             <QuoteModal
                 isOpen={isQuoteModalOpen}
                 onClose={() => setIsQuoteModalOpen(false)}
                 onSuccess={handleQuoteSuccess}
                 initialData={initialQuoteData}
+                onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
             />
+            
             <Calculator
                 isOpen={isCalculatorOpen}
                 onClose={() => setIsCalculatorOpen(false)}
                 onBook={(data) => handleOpenQuote(data)}
             />
+
+            <PrivacyModal 
+                isOpen={isPrivacyModalOpen}
+                onClose={() => setIsPrivacyModalOpen(false)}
+            />
+
             <main>
                 <Hero
                     onOpenQuote={() => handleOpenQuote()}
@@ -54,7 +66,8 @@ function App() {
                 <Features />
                 <ContactForm onSuccess={handleQuoteSuccess} />
             </main>
-            <Footer />
+            <Footer onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
+            <CookieBanner onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
         </div>
     );
 }

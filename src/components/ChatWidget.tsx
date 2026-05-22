@@ -19,7 +19,7 @@ interface BookingData {
     fullAddress?: string;
 }
 
-export const ChatWidget = ({ quoteData }: { quoteData?: any }) => {
+export const ChatWidget = ({ quoteData, onOpenPrivacy }: { quoteData?: any; onOpenPrivacy?: () => void }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
         {
@@ -286,7 +286,7 @@ export const ChatWidget = ({ quoteData }: { quoteData?: any }) => {
                 const botResponse: Message = {
                     id: Date.now() + 1,
                     sender: 'bot',
-                    text: `Toppen! Jag har reserverat ${dateStr}. \n\nInnan vi går vidare måste jag be dig godkänna att vi behandlar dina personuppgifter enligt GDPR för att kunna hantera din bokning.`,
+                    text: `Toppen! Jag har reserverat ${dateStr}. \n\nInnan vi går vidare måste jag be dig godkänna att vi behandlar dina personuppgifter enligt GDPR för att kunna hantera din bokning. Läs gärna vår [Integritetspolicy] för mer information.`,
                     choices: ['Jag godkänner']
                 };
                 setMessages(prev => [...prev, botResponse]);
@@ -488,7 +488,7 @@ export const ChatWidget = ({ quoteData }: { quoteData?: any }) => {
                         setBookingData({ ...bookingData, time: isoTime || input });
 
                         // GDPR Check
-                        botResponse.text = `Toppen! Jag har reserverat ${input}. \n\nInnan vi går vidare måste jag be dig godkänna att vi behandlar dina personuppgifter enligt GDPR för att kunna hantera din bokning.`;
+                        botResponse.text = `Toppen! Jag har reserverat ${input}. \n\nInnan vi går vidare måste jag be dig godkänna att vi behandlar dina personuppgifter enligt GDPR för att kunna hantera din bokning. Läs gärna vår [Integritetspolicy] för mer information.`;
                         botResponse.choices = ['Jag godkänner'];
                         setBookingState('gdpr_consent');
                     }
@@ -834,7 +834,28 @@ Stämmer detta?`;
                                     ? 'bg-orange-600 text-white rounded-tr-none'
                                     : 'bg-white text-gray-800 border border-gray-200 rounded-tl-none'
                                     }`}>
-                                    {msg.text}
+                                    {(() => {
+                                        if (msg.text.includes('[Integritetspolicy]')) {
+                                            const parts = msg.text.split('[Integritetspolicy]');
+                                            return (
+                                                <>
+                                                    {parts[0]}
+                                                    <button
+                                                        type="button"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            onOpenPrivacy?.();
+                                                        }}
+                                                        className="text-orange-600 underline font-medium hover:text-orange-700 mx-1 inline-block"
+                                                    >
+                                                        Integritetspolicy
+                                                    </button>
+                                                    {parts[1]}
+                                                </>
+                                            );
+                                        }
+                                        return msg.text;
+                                    })()}
                                 </div>
 
                                 {/* Suggestions / Choices - ALWAYS BELOW */}

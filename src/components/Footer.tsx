@@ -1,7 +1,10 @@
-
 import { Sun, Mail, Phone, MapPin } from 'lucide-react';
 
-export const Footer = () => {
+interface FooterProps {
+    onOpenPrivacy?: () => void;
+}
+
+export const Footer = ({ onOpenPrivacy }: FooterProps) => {
     return (
         <footer className="bg-[#1A1A1A] text-white py-16 px-6">
             <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 border-b border-gray-800 pb-12">
@@ -19,7 +22,7 @@ export const Footer = () => {
                 {/* Contact */}
                 <div className="space-y-4">
                     <h4 className="font-bold text-lg">Kontakt</h4>
-                    <div className="space-y-3 text-sm text-gray-400">
+                    <div className="space-y-3 thext-sm text-gray-400">
                         <a href="tel:0708704233" className="flex items-center gap-3 hover:text-orange-500 transition-colors">
                             <Phone className="w-4 h-4" />
                             <span>070-870 42 33</span>
@@ -33,6 +36,17 @@ export const Footer = () => {
                             <span>Stockholm, Sverige</span>
                         </div>
                     </div>
+                </div>
+
+                {/* Legal */}
+                <div className="space-y-4">
+                    <h4 className="font-bold text-lg">Juridik</h4>
+                    <button 
+                        onClick={() => onOpenPrivacy?.()} 
+                        className="text-sm text-gray-400 hover:text-orange-500 transition-colors block"
+                    >
+                        Integritetspolicy
+                    </button>
                 </div>
             </div>
 
