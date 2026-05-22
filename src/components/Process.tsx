@@ -16,7 +16,42 @@ const popupContent = {
     },
     google: {
         title: "5.0 på Google",
-        text: "Vi är otroligt stolta över våra fina kundomdömen. Vi strävar alltid efter att överträffa förväntningarna, från första kontakten till färdig installation och support. Nöjda kunder är vårt bästa kvitto på att vi gör rätt.\n\n\"Superproffsigt bemötande och snabb installation. Rekommenderas varmt!\" - Anders P.\n\n\"Kändes tryggt hela vägen från första kontakten till färdig anläggning.\" - Maria L."
+        text: "",
+        content: (
+            <div className="space-y-6">
+                <p className="text-gray-600 leading-relaxed">
+                    Vi är otroligt stolta över våra fina kundomdömen. Vi strävar alltid efter att överträffa förväntningarna, från första kontakten till färdig installation och support.
+                </p>
+                <div className="space-y-4 max-h-[40vh] overflow-y-auto pr-2">
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        <div className="flex gap-1 text-yellow-500 mb-2">
+                            <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
+                        </div>
+                        <p className="italic text-gray-700 text-sm">"Superproffsigt bemötande och snabb installation. Installatörerna var effektiva och lämnade snyggt efter sig. Rekommenderas varmt!"</p>
+                        <p className="font-bold text-gray-900 text-sm mt-2">- Anders P.</p>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        <div className="flex gap-1 text-yellow-500 mb-2">
+                            <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
+                        </div>
+                        <p className="italic text-gray-700 text-sm">"Väldigt nöjd med Takel. Kändes tryggt hela vägen från första kontakten till färdig anläggning. Fick bra hjälp att välja rätt batteristorlek."</p>
+                        <p className="font-bold text-gray-900 text-sm mt-2">- Maria L.</p>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        <div className="flex gap-1 text-yellow-500 mb-2">
+                            <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
+                        </div>
+                        <p className="italic text-gray-700 text-sm">"Rekommenderas varmt! Bra pris och trevlig personal. Känns tryggt med en lokal leverantör som verkligen bryr sig om sina kunder."</p>
+                        <p className="font-bold text-gray-900 text-sm mt-2">- Johan K.</p>
+                    </div>
+                </div>
+                <div className="pt-2 text-center">
+                    <a href="https://www.google.com/search?q=takel+ab+vaxholm" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-orange-600 font-bold hover:text-orange-700 underline underline-offset-4">
+                        Läs alla recensioner på Google <Star className="w-4 h-4 fill-current" />
+                    </a>
+                </div>
+            </div>
+        )
     }
 };
 
@@ -130,10 +165,14 @@ export const Process = () => {
                         >
                             <X className="w-5 h-5" />
                         </button>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">{popupContent[activePopup].title}</h3>
-                        <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-                            {popupContent[activePopup].text}
-                        </p>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-4">{(popupContent[activePopup] as any).title}</h3>
+                        {(popupContent[activePopup] as any).content ? (
+                            (popupContent[activePopup] as any).content
+                        ) : (
+                            <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                                {(popupContent[activePopup] as any).text}
+                            </p>
+                        )}
                         <button 
                             onClick={() => setActivePopup(null)}
                             className="mt-8 w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold rounded-lg transition-colors"
