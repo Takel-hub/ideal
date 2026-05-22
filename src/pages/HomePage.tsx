@@ -2,7 +2,6 @@ import { Hero } from '../components/Hero';
 import { Process } from '../components/Process';
 import { Installations } from '../components/Installations';
 import { Packages } from '../components/Packages';
-import { Features } from '../components/Features';
 import { ContactForm } from '../components/ContactForm';
 
 interface HomePageProps {
@@ -23,7 +22,6 @@ export const HomePage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess, onSele
             <Process />
             <Installations />
             <Packages onSelectPackage={onSelectPackage} />
-            <Features />
             <ContactForm onSuccess={onQuoteSuccess} />
         </main>
     );

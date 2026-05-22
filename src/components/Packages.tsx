@@ -1,4 +1,4 @@
-import { Zap, Star } from 'lucide-react';
+import { Zap, Star, BatteryCharging, ArrowRight } from 'lucide-react';
 
 interface PackagesProps {
     onSelectPackage?: (packageName: string) => void;
@@ -80,6 +80,34 @@ export const Packages = ({ onSelectPackage }: PackagesProps) => {
                             Välj Helhetspaketet
                         </button>
                     </div>
+                </div>
+
+                {/* EV Charger Extra Card */}
+                <div className="mt-12 max-w-4xl mx-auto bg-white rounded-2xl p-8 border border-orange-100 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-orange-50 rounded-bl-full -z-0 opacity-50" />
+                    
+                    <div className="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 relative z-10">
+                        <BatteryCharging className="w-8 h-8 text-orange-600" />
+                    </div>
+                    
+                    <div className="flex-grow relative z-10">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">Smart Elbilsladdare</h3>
+                        <p className="text-gray-600 mb-4 max-w-xl">
+                            Att ladda elbilen hemma blir både billigare och smartare när du har solceller. Vi erbjuder installation av marknadsledande laddboxar som kan styras smart efter elpriset eller när solen skiner.
+                        </p>
+                        <div className="flex flex-wrap gap-4 text-sm font-medium text-gray-700">
+                            <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-orange-500" /> Ladda med solel</span>
+                            <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-orange-500" /> Styr efter timpris</span>
+                            <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-orange-500" /> 50% Grönt Avdrag</span>
+                        </div>
+                    </div>
+
+                    <button 
+                        onClick={() => onSelectPackage?.('Laddbox')}
+                        className="w-full md:w-auto py-3 px-6 bg-gray-900 text-white font-bold rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 flex-shrink-0 relative z-10"
+                    >
+                        Välj till laddbox <ArrowRight className="w-4 h-4" />
+                    </button>
                 </div>
             </div>
         </section>
