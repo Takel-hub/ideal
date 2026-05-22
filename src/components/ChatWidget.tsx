@@ -17,6 +17,7 @@ interface BookingData {
     zip?: string;
     city?: string;
     fullAddress?: string;
+    package?: string | null;
 }
 
 export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quoteData?: any; selectedPackage?: string | null; onOpenPrivacy?: () => void }) => {
