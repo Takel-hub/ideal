@@ -11,6 +11,7 @@ import { CookieBanner } from './components/CookieBanner';
 import { HomePage } from './pages/HomePage';
 import { LocalLandingPage } from './pages/LocalLandingPage';
 import { ArticlePage } from './pages/ArticlePage';
+import { FaqPage } from './pages/FaqPage';
 
 function App() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -72,6 +73,7 @@ function App() {
                             onSelectPackage={(pkg) => setSelectedPackage(pkg)}
                         />
                     } />
+                    <Route path="/faq" element={<FaqPage />} />
                     <Route path="/:articleId" element={
                         <ArticlePage 
                             onOpenQuote={() => handleOpenQuote()} 

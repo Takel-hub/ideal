@@ -29,6 +29,7 @@ export const Header = () => {
                         {isDropdownOpen && (
                             <div className="absolute top-full left-0 w-64 pt-2 z-50">
                                 <div className="bg-white shadow-xl rounded-lg border border-orange-100 py-2 flex flex-col">
+                                    <a href="/faq" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm font-semibold">Vanliga Frågor (FAQ)</a>
                                     <a href="/growatt-batteri" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">Growatt Smarta Batterier</a>
                                     <a href="/growatt-smart-styrning" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">AI Smart Styrning</a>
                                     <a href="/stodtjanster" className="px-4 py-2 hover:bg-orange-50 hover:text-orange-800 text-sm">Stödtjänster & Grönt Avdrag</a>
@@ -66,6 +67,7 @@ export const Header = () => {
                             
                             <div className="flex flex-col items-center gap-3 mt-4 mb-4 border-y border-orange-100 py-4 w-full">
                                 <span className="font-bold text-gray-400 text-sm uppercase tracking-wider">Kunskapsbank</span>
+                                <a href="/faq" className="text-lg hover:text-orange-800 font-semibold" onClick={() => setIsMenuOpen(false)}>Vanliga Frågor (FAQ)</a>
                                 <a href="/growatt-batteri" className="text-lg hover:text-orange-800" onClick={() => setIsMenuOpen(false)}>Smarta Batterier</a>
                                 <a href="/growatt-smart-styrning" className="text-lg hover:text-orange-800" onClick={() => setIsMenuOpen(false)}>AI Smart Styrning</a>
                                 <a href="/stodtjanster" className="text-lg hover:text-orange-800" onClick={() => setIsMenuOpen(false)}>Stödtjänster & Avdrag</a>
