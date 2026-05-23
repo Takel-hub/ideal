@@ -8,32 +8,36 @@ export const Footer = ({ onOpenPrivacy }: FooterProps) => {
     return (
         <footer className="bg-[#1A1A1A] text-white py-16 px-6">
             <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-gray-800 pb-12">
-                {/* Brand */}
+                {/* Brand / GEO Entity */}
                 <div className="space-y-4 col-span-2 md:col-span-1">
                     <div className="flex items-center gap-2">
                         <Sun className="w-6 h-6 text-orange-500" />
                         <span className="text-xl font-bold">Takel.se</span>
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                        Sveriges mest energiska solcellsföretag. Vi gör solenergi enkelt och lönsamt.
+                        <strong>Takel AB</strong> är en certifierad solcellsinstallatör baserad i Vaxholm. Vi specialiserar oss på kompletta solcellsanläggningar, Growatt-batterier och smarta elbilsladdare för villaägare i hela Storstockholm.
                     </p>
                 </div>
 
-                {/* Contact */}
+                {/* Contact / NAP (Name, Address, Phone) */}
                 <div className="space-y-4">
                     <h4 className="font-bold text-lg">Kontakt</h4>
                     <div className="space-y-3 text-sm text-gray-400">
                         <a href="tel:0708704233" className="flex items-center gap-3 hover:text-orange-500 transition-colors">
-                            <Phone className="w-4 h-4" />
+                            <Phone className="w-4 h-4 flex-shrink-0" />
                             <span>070-870 42 33</span>
                         </a>
                         <div className="flex items-center gap-3">
-                            <Mail className="w-4 h-4" />
+                            <Mail className="w-4 h-4 flex-shrink-0" />
                             <a href="mailto:hej@takel.se" className="hover:text-orange-500 transition-colors">hej@takel.se</a>
                         </div>
-                        <div className="flex items-center gap-3">
-                            <MapPin className="w-4 h-4" />
-                            <span>Stockholm, Sverige</span>
+                        <div className="flex items-start gap-3">
+                            <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
+                            <span itemScope itemType="http://schema.org/PostalAddress">
+                                <strong>Takel AB</strong><br/>
+                                <span itemProp="streetAddress">Timmermansvägen 1B</span><br/>
+                                <span itemProp="postalCode">185 34</span> <span itemProp="addressLocality">Vaxholm</span>
+                            </span>
                         </div>
                     </div>
                 </div>

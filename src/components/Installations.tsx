@@ -18,7 +18,8 @@ const installations = [
         Jag undrar om det var något annat som var viktigt?  Det är kanske den bästa investering vi gjort! Säger Martin. Hur menar du, frågar jag. Från första dagen solcellerna började producera sänkte vi vår elräkning och kommer att göra det så länge vi bor kvar. Sedan är det en klockren investering i huset! Säger Martin och fortsätter: Redan när vi flyttade in hade vi en plan på hur vi ska energieffektivisera huset. Vi visste att taket behövde renoveras och vi passade på att tilläggsisolera samtidigt. Sedan var det självklart att installera solceller, så nu kan de ligga där och producera hur många år som helst (känns det som), berättar Martin och lägger till:  Efter att du berättade om batterier så är jag glad att jag lyssnade och skaffade batterier för att även kunna lagra den el vi producerar och använda själv andra tider på dygnet och få känslan att vara lite självförsörjande. Den känslan är speciell!
         
         Vad var det som gjorde att ni valde Takel? Klockren kundupplevelse, säger Martin direkt och fortsätter, jag har svårt att se hur vi kunnat hitta någon bättre. Jag nästan rodnar lite men tackar för den feedbacken och berättar att det är en av Takels uppdrag: Kundnöjdhet. Ni har många fördelar jämfört med konkurrenter utöver den klockrena kundupplevelsen var ni otroligt snabba, både med att leverera och installera. Alla vi har kommit i kontakt med från Takel har varit väldigt proffsiga och trevliga. Även efteråt har er service varit i toppklass! Vi läser och hör om andra som mejlar utan svar, ringer och hamnar i telefonkö eller inte kommer fram men hos er kommer vi alltid fram och får snabba svar både på mejl och telefon. Allt detta och mer gör att jag rekommenderar er till alla som är nyfikna på solceller.`,
-        image: "/images/Takel-Hemma-hos-Martin-768x788.webp"
+        image: "/images/Takel-Hemma-hos-Martin-768x788.webp",
+        altText: "Kunden Martin framför sin villa i Huddinge efter en professionell installation av solceller från Takel AB."
     },
     {
         title: "Avstyckningsvägen",
@@ -36,7 +37,8 @@ const installations = [
         Jag frågar om de skulle rekommendera Takel och Hans säger -Absolut! Jag blir nyfiken på vad det beror på och vi kommer in på vad som imponerade mest och deras svar var hur snabbt det gick! Allt från att få det installerat på taket till hur snabbt elektrikern var där och fick allt inkopplat. De berättade att en av deras grannar hade fått vänta i flera månader och Hans hade varit inställd på att det ska ta så lång tid men var mycket nöjd med att det gick så snabbt.
         
         -Finns det något annat du skulle säga till de som funderar på solceller, frågar jag Hans. Han funderar och säger – Jag tycker att batterier är en självklarhet och om du kan förklara fördelarna med batterier så tror jag fler skulle välja solceller. Hans fortsätter -Ladda batterierna på dagen med solceller, använd batterierna på kvällen. Ladda sen batterierna från elnätet på natten och använd den elen på morgonen.`,
-        image: "/images/Takel-Solceller-Avstyckningsvagen-Jarfalla-Hans.webp"
+        image: "/images/Takel-Solceller-Avstyckningsvagen-Jarfalla-Hans.webp",
+        altText: "Nöjd kund Hans i Järfälla som installerade solceller och ett komplett batterisystem för energilagring."
     },
     {
         title: "Mandolinvägen",
@@ -51,7 +53,8 @@ const installations = [
         – Takel har också installerat på andra hus i området. De var trevliga och proffsiga så vi rekommenderar absolut Takel, flikar Eva in.
         
         – Så smidigt och snabbt. På endast två veckor hade Takel installerat allt. Det känns framtidssäkert att ha solpaneler och batterier. Även miljövänligt, fortsätter Dag.`,
-        image: "/images/Takel_Solceller_Mandolinvagen_1_Skrattande_Dag__Eva-1-768x512.webp"
+        image: "/images/Takel_Solceller_Mandolinvagen_1_Skrattande_Dag__Eva-1-768x512.webp",
+        altText: "Skrattande paret Dag och Eva på sin terrass i Järfälla efter en snabb solcellsinstallation på två veckor."
     },
     {
         title: "Västerskogsvägen",
@@ -59,7 +62,8 @@ const installations = [
         date: "2024",
         excerpt: "Janne och Lena är nöjda över sitt val av Takel som leverantör av solceller, så nöjda att de rekommenderar oss till alla grannar.",
         fullText: "Janne och Lena på Västerskogsvägen är nöjda över sitt val av Takel som leverantör av solceller, så nöjda att de rekommenderar oss till alla grannar.",
-        image: "/images/Takel_Solceller_Vasterskogsvagen_Tak3-600x600-1.webp"
+        image: "/images/Takel_Solceller_Vasterskogsvagen_Tak3-600x600-1.webp",
+        altText: "Nyinstallerade, helt svarta solpaneler på ett tegeltak på en villa i Vaxholm monterade av Takel AB."
     },
     {
         title: "Gadolinitvägen 3",
@@ -67,7 +71,8 @@ const installations = [
         date: "2024",
         excerpt: "Tony och Katrin är glada över sitt val av Takel. De beskriver hur personlig servicen var och hur trygga de kände sig genom hela processen.",
         fullText: "Tony och Katrin på Gadolinitvägen 3 är glada över sitt val av Takel som leverantör av solceller. De beskriver hur personlig servicen var och hur trygga de kände sig genom hela processen.",
-        image: "/images/Takel_Solceller_Gadolinitvagen_Overblick_Med_Pool-600x600-1.webp"
+        image: "/images/Takel_Solceller_Gadolinitvagen_Overblick_Med_Pool-600x600-1.webp",
+        altText: "Överblick av modern villa med pool och nya solceller på taket i Vaxholm."
     },
     {
         title: "Dalstigen 5",
@@ -75,7 +80,8 @@ const installations = [
         date: "2024",
         excerpt: "Niclas och Marianne kunde inte vara nöjdare. De berättar hur det var att välja en lokal leverantör som verkligen bryr sig.",
         fullText: "Niclas och Marianne kunde inte vara nöjdare med sitt val av Takel som leverantör av solceller. De berättar hur det var att välja en lokal leverantör som verkligen bryr sig.",
-        image: "/images/Takel_Solceller_Dalstigen_Resaro_Niclas_Marianne-600x600-1.webp"
+        image: "/images/Takel_Solceller_Dalstigen_Resaro_Niclas_Marianne-600x600-1.webp",
+        altText: "Niclas och Marianne utanför sitt hus i Vaxholm som fått premiumsolceller från Takel."
     }
 ];
 
@@ -113,7 +119,8 @@ export const Installations = ({ cityFilter }: InstallationsProps) => {
                             <div className="h-48 overflow-hidden">
                                 <img
                                     src={item.image}
-                                    alt={item.title}
+                                    alt={item.altText || item.title}
+                                    loading="lazy"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                             </div>
@@ -148,7 +155,8 @@ export const Installations = ({ cityFilter }: InstallationsProps) => {
                         <div className="h-64 md:h-80 overflow-hidden relative">
                             <img
                                 src={selectedStory.image}
-                                alt={selectedStory.title}
+                                alt={selectedStory.altText || selectedStory.title}
+                                loading="lazy"
                                 className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">

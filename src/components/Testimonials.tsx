@@ -94,7 +94,8 @@ export const Testimonials = ({ cityFilter }: TestimonialsProps) => {
                             {displayTestimonials[currentIndex].image ? (
                                 <img
                                     src={displayTestimonials[currentIndex].image}
-                                    alt={displayTestimonials[currentIndex].name}
+                                    alt={`Nöjd kund ${displayTestimonials[currentIndex].name} från ${displayTestimonials[currentIndex].location}`}
+                                    loading="lazy"
                                     className="w-24 h-24 rounded-full object-cover mb-6 border-4 border-orange-100 shadow-sm"
                                 />
                             ) : (
