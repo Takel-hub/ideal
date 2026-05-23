@@ -55,6 +55,7 @@ export const Header = () => {
                 <button
                     className="md:hidden relative z-50 p-2 text-orange-600"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label={isMenuOpen ? "Stäng meny" : "Öppna meny"}
                 >
                     {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
