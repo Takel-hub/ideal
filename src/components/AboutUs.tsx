@@ -42,7 +42,7 @@ export const AboutUs = () => {
                                 Den lokala solcellsexperten du faktiskt <span className="text-orange-600">kan lita på</span>.
                             </h2>
                             <p className="text-lg text-gray-600 leading-relaxed">
-                                Vi startade Takel med en enkel övertygelse: Att investera i solenergi ska vara tryggt, personligt och helt fritt från krångel. Som ett lokalt förankrat företag i Vaxholm och Storstockholm har vi sett hur branschen ibland tappar bort kunden bland långa telefonköer och otydliga offerter. Det ville vi ändra på.
+                                Vi startade Takel med en enkel övertygelse: Att investera i solenergi ska vara tryggt, personligt och helt fritt från krångel. Som din <span className="font-medium text-gray-800">lokala Growatt-expert</span> i Vaxholm och Storstockholm brinner vi för <span className="font-medium text-gray-800">personlig solcellsrådgivning i Stockholm</span>. Vi har sett hur branschen ibland tappar bort kunden bland långa telefonköer och otydliga offerter. Vi erbjuder istället en genuint <span className="font-medium text-gray-800">trygg solcellsinstallation</span> där du är i centrum.
                             </p>
                         </div>
 
@@ -62,7 +62,7 @@ export const AboutUs = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-gray-900 text-lg">Kvalitet i varje detalj</h3>
-                                    <p className="text-gray-600">Vi installerar det vi själva skulle vilja ha på våra egna tak. Med fokus på premiummärken som Growatt säkerställer vi prestanda som håller över tid – uppbackat av branschens starkaste garantier.</p>
+                                    <p className="text-gray-600">Vi installerar det vi själva skulle vilja ha på våra egna tak. Med fokus på premiumprodukter som <a href="/growatt-batteri" className="text-orange-600 hover:underline font-medium">Growatt-batterier</a> och marknadsledande <a href="/laddbox-stockholm" className="text-orange-600 hover:underline font-medium">laddboxar</a> säkerställer vi prestanda som håller över tid – uppbackat av branschens starkaste garantier.</p>
                                 </div>
                             </div>
                         </div>
