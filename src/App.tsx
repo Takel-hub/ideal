@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ChatWidget } from './components/ChatWidget';
@@ -12,6 +13,25 @@ import { HomePage } from './pages/HomePage';
 import { LocalLandingPage } from './pages/LocalLandingPage';
 import { ArticlePage } from './pages/ArticlePage';
 import { FaqPage } from './pages/FaqPage';
+
+function ScrollToHash() {
+    const { hash } = useLocation();
+
+    useEffect(() => {
+        if (hash) {
+            // Remove the '#' to get the id
+            const id = hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [hash]);
+
+    return null;
+}
 
 function App() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -33,6 +53,7 @@ function App() {
 
     return (
         <Router>
+            <ScrollToHash />
             <div className="min-h-screen bg-background font-sans text-text">
                 <Header />
                 <ChatWidget quoteData={quoteData} selectedPackage={selectedPackage} onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />

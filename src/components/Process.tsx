@@ -59,7 +59,7 @@ export const Process = () => {
     const [activePopup, setActivePopup] = useState<keyof typeof popupContent | null>(null);
 
     return (
-        <section className="py-24 bg-white" id="process">
+        <section className="py-24 bg-white" id="om-oss">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Vägen till solenergi är <span className="text-orange-600">busenkel</span></h2>
