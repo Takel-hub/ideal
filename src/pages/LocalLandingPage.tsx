@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Star, ArrowRight } from 'lucide-react';
 import { Process } from '../components/Process';
 import { ContactForm } from '../components/ContactForm';
@@ -38,6 +39,10 @@ export const LocalLandingPage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess
 
     return (
         <main>
+            <Helmet>
+                <title>Solceller i {cityName} – Lokal expertis & trygg installation | Takel</title>
+                <meta name="description" content={`Funderar du på solceller i ${cityName}? Takel är din lokala installatör som erbjuder helhetslösningar med solpaneler, batterilager och laddboxar.`} />
+            </Helmet>
             {/* Lokaliserad Hero */}
             <section className="relative bg-background pt-20 pb-32 px-6 md:px-12 overflow-hidden text-center">
                 <div className="max-w-4xl mx-auto relative z-10">

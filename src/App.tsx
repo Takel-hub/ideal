@@ -33,6 +33,8 @@ function ScrollToHash() {
     return null;
 }
 
+import { HelmetProvider } from 'react-helmet-async';
+
 function App() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
     const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
@@ -52,9 +54,10 @@ function App() {
     };
 
     return (
-        <Router>
-            <ScrollToHash />
-            <div className="min-h-screen bg-background font-sans text-text">
+        <HelmetProvider>
+            <Router>
+                <ScrollToHash />
+                <div className="min-h-screen bg-background font-sans text-text">
                 <Header />
                 <ChatWidget quoteData={quoteData} selectedPackage={selectedPackage} onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
                 
@@ -106,7 +109,8 @@ function App() {
                 <Footer onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
                 <CookieBanner onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
             </div>
-        </Router>
+            </Router>
+        </HelmetProvider>
     );
 }
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { generalFaqs } from '../data/generalFaq';
 import { ChevronDown } from 'lucide-react';
 
@@ -21,6 +22,10 @@ export const FaqPage = () => {
 
     return (
         <main className="bg-background min-h-screen pt-32 pb-20">
+            <Helmet>
+                <title>Vanliga frågor om solceller – Svar från Takel Stockholm</title>
+                <meta name="description" content="Svar på de vanligaste frågorna om solceller, batterier och laddbox: pris, ROT-avdrag, installation och återbetalningstid." />
+            </Helmet>
             {/* Inject Schema directly */}
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 

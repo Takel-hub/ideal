@@ -156,5 +156,68 @@ export const growattArticles: ArticleContent[] = [
         ],
         faqs: [],
         ctaText: 'Att investera i solceller och lagring är en trygg affär. Tveka inte att kontakta oss för ett hembesök eller en snabb kalkyl!'
+    },
+    {
+        id: 'laddbox-stockholm',
+        title: 'Laddbox Villa Stockholm – Ladda elbilen med solen',
+        intro: 'Har du elbil eller planerar att skaffa en? Genom att installera en smart laddbox hemma i villan blir laddningen både snabbare, säkrare och framförallt – mycket billigare när du kombinerar den med solceller.',
+        sections: [
+            {
+                subtitle: 'Varför installera laddbox hemma?',
+                content: 'Att ladda bilen i ett vanligt vägguttag är både ineffektivt och direkt farligt på grund av brandrisken. En modern laddbox är designad för hög belastning under lång tid. För dig som villaägare i Stockholm innebär det att du alltid vaknar upp till en fulladdad bil.\n\n*   **Säkert:** Inbyggd lastbalansering ser till att husets proppar inte går.\n*   **Snabbt:** Ladda upp till 10 gånger snabbare än i ett vanligt uttag.\n*   **Ekonomiskt:** Styr laddningen till de billigaste timmarna på dygnet.'
+            },
+            {
+                subtitle: 'Kombinera Laddbox med Solceller',
+                content: 'Den stora ekonomiska vinningen kommer när du kombinerar din laddbox med solceller (och eventuellt batteri). Många av våra kunder laddar bilen helt gratis under sommarhalvåret med egenproducerad sol-el. \n\nVi på Takel installerar kompletta system från Growatt, där solceller, batteri och laddbox pratar med varandra i samma app. Smart laddning innebär att boxen automatiskt känner av när solen skiner och styr överskottselen direkt till bilen.'
+            },
+            {
+                subtitle: 'Pris och Grönt Teknikavdrag 2026',
+                content: 'När du installerar en laddbox via oss på Takel får du upp till **50% i Grönt Teknikavdrag** direkt på fakturan. Det gäller för både arbete och material. Kontakta oss för ett kostnadsfritt hembesök så ger vi en offert på laddbox, oavsett om du vill installera solceller samtidigt eller bygga ut i framtiden.'
+            }
+        ],
+        faqs: [],
+        ctaText: 'Vill du veta hur mycket en laddbox kostar för just ditt hus? Kontakta oss för en gratis offert!'
+    },
+    {
+        id: 'gront-teknikavdrag-2026',
+        title: 'Grönt Teknikavdrag 2026 – Regler för Solceller & Batteri',
+        intro: 'Grönt teknikavdrag fungerar ungefär som ROT-avdraget, men är specifikt inriktat på grön energi. För 2026 finns det tre viktiga procentsatser att hålla koll på för dig som villaägare.',
+        sections: [
+            {
+                subtitle: 'Hur mycket får jag i avdrag?',
+                content: 'Avdraget dras direkt på vår faktura, så du behöver inte göra något pappersarbete eller ligga ute med pengar.\n\n*   **15% för solceller:** Avdraget gäller för installation av nätanslutna solcellssystem.\n*   **50% för batterilager:** Du får halva kostnaden betald om du installerar ett batteri för att lagra egenproducerad el.\n*   **50% för laddbox:** Även här får du halva kostnaden betald vid installation av godkänd laddningspunkt för elbil.'
+            },
+            {
+                subtitle: 'Maxtaket per person och år',
+                content: 'Maxbeloppet du kan få i skattereduktion är 50 000 kronor per person och år. Om ni är två personer som äger fastigheten kan ni alltså få totalt **100 000 kronor** i skattereduktion under ett år. Tänk på att du måste ha betalat tillräckligt mycket i skatt under året för att kunna utnyttja hela avdraget.'
+            },
+            {
+                subtitle: 'Viktigt att tänka på inför installationen',
+                content: 'För att få avdraget för batterier krävs det att systemet är dimensionerat för att lagra den el ni själva producerar (ni kan alltså inte bara köpa batterier för att spekulera på elmarknaden utan solceller, även om stödtjänster i sig är tillåtet som sido-effekt enligt de senaste tolkningarna). Skatteverkets regler är tydliga och vi på Takel hjälper er alltid att bygga ett system som är 100% godkänt för avdraget.'
+            }
+        ],
+        faqs: [],
+        ctaText: 'Låt oss räkna på hur mycket Grönt Teknikavdrag du kan få! Boka ett gratis hembesök idag.'
+    },
+    {
+        id: 'solceller-eller-batteri-forst',
+        title: 'Solceller eller Batteri först? Så prioriterar du',
+        intro: 'Många villaägare vi träffar i Stockholm ställer samma fråga: "Ska jag investera i både solceller och batteri, eller bara en av dem?". Här är vår ärliga guide till vad som lönar sig mest.',
+        sections: [
+            {
+                subtitle: 'Solceller – Grunden i din besparing',
+                content: 'Solceller är alltid grundinvesteringen. Utan solceller har du ingen egen gratis energi att lagra. Solcellerna sänker din elräkning rejält från april till oktober genom att du slipper köpa el under dagen. \n\nMen, utmaningen är att solcellerna producerar som mest mitt på dagen när du oftast inte är hemma, och minst på kvällen när ugn, TV och laddning drar igång.'
+            },
+            {
+                subtitle: 'Batterilager – Maximera din egenanvändning',
+                content: 'Ett batterilager löser problemet ovan. Istället för att sälja din överskottsel billigt mitt på dagen, sparar batteriet den till kvällen när elen är dyr. \n\nMed tanke på att du får hela **50% i Grönt Teknikavdrag** på batterier, är det idag nästan alltid lönsamt att inkludera ett batteri från start. Ett batteri höjer ofta din självförsörjningsgrad från ca 30% (bara solceller) till uppemot 70-80%.'
+            },
+            {
+                subtitle: 'Vår rekommendation',
+                content: 'För 9 av 10 av våra kunder i Stockholmsområdet rekommenderar vi en **kombination**. Med våra paketlösningar (t.ex. Familjepaketet med 16 paneler och 10kWh batteri) får du ett system som både producerar och lagrar el optimalt. \n\nHar du en tajt budget kan du absolut börja med bara solceller och en så kallad hybrid-växelriktare. Då är du förberedd för att enkelt klicka dit ett batteri om ett par år.'
+            }
+        ],
+        faqs: [],
+        ctaText: 'Osäker på vad som passar bäst för just din villa? Kontakta oss för en fri energikalkyl.'
     }
 ];

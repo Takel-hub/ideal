@@ -1,4 +1,5 @@
 import { useParams, Navigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { growattArticles } from '../data/growattContent';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { ContactForm } from '../components/ContactForm';
@@ -20,6 +21,10 @@ export const ArticlePage = ({ onOpenQuote, onQuoteSuccess }: ArticlePageProps) =
 
     return (
         <main className="w-full">
+            <Helmet>
+                <title>{article.title} | Takel</title>
+                <meta name="description" content={article.intro.substring(0, 155) + "..."} />
+            </Helmet>
             {/* Hero Section */}
             <section className="bg-orange-50 pt-20 pb-24 px-6 md:px-12 text-center">
                 <div className="max-w-4xl mx-auto">
