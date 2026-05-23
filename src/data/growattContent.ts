@@ -175,7 +175,24 @@ export const growattArticles: ArticleContent[] = [
                 content: 'När du installerar en laddbox via oss på Takel får du upp till **50% i Grönt Teknikavdrag** direkt på fakturan. Det gäller för både arbete och material. Kontakta oss för ett kostnadsfritt hembesök så ger vi en offert på laddbox, oavsett om du vill installera solceller samtidigt eller bygga ut i framtiden.'
             }
         ],
-        faqs: [],
+        faqs: [
+            {
+                question: 'Måste jag ha solceller för att installera en laddbox?',
+                answer: 'Nej, du kan absolut installera en laddbox utan solceller och fortfarande få 50% Grönt Teknikavdrag. Men om du kombinerar dem får du möjligheten att ladda bilen med din egen gratis solel.'
+            },
+            {
+                question: 'Vilken laddbox rekommenderar ni?',
+                answer: 'Vi arbetar främst med ledande märken som Growatt och Zaptec, som erbjuder smart lastbalansering och fungerar perfekt i det svenska klimatet. Båda integrerar dessutom sömlöst med solcellssystem.'
+            },
+            {
+                question: 'Vad kostar en laddbox installerad och klar?',
+                answer: 'En standardinstallation av en modern laddbox med lastbalansering kostar oftast mellan 8 000 och 12 000 kr efter att Grönt Teknikavdrag (50%) är avdraget direkt på fakturan.'
+            },
+            {
+                question: 'Kan jag ladda när elen är som billigast?',
+                answer: 'Ja! Moderna laddboxar kan integreras med smart styrning. Via appen kan du ställa in att bilen bara ska laddas när timpriset på el är som lägst (oftast på natten).'
+            }
+        ],
         ctaText: 'Vill du veta hur mycket en laddbox kostar för just ditt hus? Kontakta oss för en gratis offert!'
     },
     {
