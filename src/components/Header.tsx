@@ -19,6 +19,7 @@ export const Header = () => {
                     <a href="/#installationer" className="hover:text-orange-800 transition-colors">Nöjda kunder</a>
                     <a href="/#om-oss" className="hover:text-orange-800 transition-colors">Om oss</a>
                     <a href="/#paket" className="hover:text-orange-800 transition-colors">Paket</a>
+                    <a href="/laddbox-stockholm" className="hover:text-orange-800 transition-colors">Laddbox</a>
                     <div className="relative" onMouseLeave={() => setIsDropdownOpen(false)}>
                         <button 
                             className="flex items-center gap-1 hover:text-orange-800 transition-colors focus:outline-none h-16"
@@ -65,6 +66,7 @@ export const Header = () => {
                             <a href="/#installationer" onClick={() => setIsMenuOpen(false)}>Nöjda kunder</a>
                             <a href="/#om-oss" onClick={() => setIsMenuOpen(false)}>Om oss</a>
                             <a href="/#paket" onClick={() => setIsMenuOpen(false)}>Paket</a>
+                            <a href="/laddbox-stockholm" onClick={() => setIsMenuOpen(false)}>Laddbox</a>
                             
                             <div className="flex flex-col items-center gap-3 mt-4 mb-4 border-y border-orange-100 py-4 w-full">
                                 <span className="font-bold text-gray-400 text-sm uppercase tracking-wider">Kunskapsbank</span>
