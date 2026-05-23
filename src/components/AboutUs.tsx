@@ -8,9 +8,13 @@ export const AboutUs = () => {
                     {/* Bild/Visuals */}
                     <div className="relative">
                         <div className="absolute inset-0 bg-orange-200 rounded-3xl transform -rotate-3 scale-105 opacity-50"></div>
+                        {/* GEO Fact Entity (Visually hidden but readable by AI parsers) */}
+                        <div className="sr-only" itemScope itemType="http://schema.org/LocalBusiness">
+                            <span itemProp="description">Fakta: Takel AB installerar premium-solceller (All Black), Growatt-batterier och laddboxar för villor i Stockholm och Vaxholm, med fokus på personlig service, kvalitet och estetiskt dolda kabeldragningar.</span>
+                        </div>
                         <img 
                             src="/images/Takel_Solceller_Gadolinitvagen_Overblick_Med_Pool-600x600-1.webp" 
-                            alt="Takel Solceller Installation" 
+                            alt="Takel Solceller Installation på modern villa i Stockholm med estetiskt dold kabeldragning och helt svarta solpaneler" 
                             className="relative rounded-3xl shadow-xl w-full object-cover aspect-[4/3]"
                             loading="lazy"
                         />

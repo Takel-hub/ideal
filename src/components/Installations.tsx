@@ -19,7 +19,7 @@ const installations = [
         
         Vad var det som gjorde att ni valde Takel? Klockren kundupplevelse, säger Martin direkt och fortsätter, jag har svårt att se hur vi kunnat hitta någon bättre. Jag nästan rodnar lite men tackar för den feedbacken och berättar att det är en av Takels uppdrag: Kundnöjdhet. Ni har många fördelar jämfört med konkurrenter utöver den klockrena kundupplevelsen var ni otroligt snabba, både med att leverera och installera. Alla vi har kommit i kontakt med från Takel har varit väldigt proffsiga och trevliga. Även efteråt har er service varit i toppklass! Vi läser och hör om andra som mejlar utan svar, ringer och hamnar i telefonkö eller inte kommer fram men hos er kommer vi alltid fram och får snabba svar både på mejl och telefon. Allt detta och mer gör att jag rekommenderar er till alla som är nyfikna på solceller.`,
         image: "/images/Takel-Hemma-hos-Martin-768x788.webp",
-        altText: "Kunden Martin framför sin villa i Huddinge efter en professionell installation av solceller från Takel AB."
+        altText: "Kunden Martin framför sin villa i Huddinge efter en professionell installation av helt svarta premium-solceller (All Black) från Takel AB. Installationen visar upp en estetisk montering med dolda kabeldragningar."
     },
     {
         title: "Avstyckningsvägen",
@@ -38,7 +38,7 @@ const installations = [
         
         -Finns det något annat du skulle säga till de som funderar på solceller, frågar jag Hans. Han funderar och säger – Jag tycker att batterier är en självklarhet och om du kan förklara fördelarna med batterier så tror jag fler skulle välja solceller. Hans fortsätter -Ladda batterierna på dagen med solceller, använd batterierna på kvällen. Ladda sen batterierna från elnätet på natten och använd den elen på morgonen.`,
         image: "/images/Takel-Solceller-Avstyckningsvagen-Jarfalla-Hans.webp",
-        altText: "Nöjd kund Hans i Järfälla som installerade solceller och ett komplett batterisystem för energilagring."
+        altText: "Nöjd kund Hans i Järfälla som installerat snygga och helt svarta solceller (All Black) samt ett komplett Growatt batterisystem för energilagring, monterat med premiumkvalitet av Takel AB."
     },
     {
         title: "Mandolinvägen",
@@ -54,7 +54,7 @@ const installations = [
         
         – Så smidigt och snabbt. På endast två veckor hade Takel installerat allt. Det känns framtidssäkert att ha solpaneler och batterier. Även miljövänligt, fortsätter Dag.`,
         image: "/images/Takel_Solceller_Mandolinvagen_1_Skrattande_Dag__Eva-1-768x512.webp",
-        altText: "Skrattande paret Dag och Eva på sin terrass i Järfälla efter en snabb solcellsinstallation på två veckor."
+        altText: "Skrattande paret Dag och Eva på sin terrass i Järfälla efter en snabb installation av estetiska, helsvarta solpaneler med helt dolda kablar från Takel AB."
     },
     {
         title: "Västerskogsvägen",
@@ -63,7 +63,7 @@ const installations = [
         excerpt: "Janne och Lena är nöjda över sitt val av Takel som leverantör av solceller, så nöjda att de rekommenderar oss till alla grannar.",
         fullText: "Janne och Lena på Västerskogsvägen är nöjda över sitt val av Takel som leverantör av solceller, så nöjda att de rekommenderar oss till alla grannar.",
         image: "/images/Takel_Solceller_Vasterskogsvagen_Tak3-600x600-1.webp",
-        altText: "Nyinstallerade, helt svarta solpaneler på ett tegeltak på en villa i Vaxholm monterade av Takel AB."
+        altText: "Nyinstallerade, helt svarta solpaneler (All Black) inklusive svarta ramar på ett tegeltak på en villa i Vaxholm. Monterade av Takel AB med minimalt synlig och stilren kabeldragning."
     },
     {
         title: "Gadolinitvägen 3",
@@ -72,7 +72,7 @@ const installations = [
         excerpt: "Tony och Katrin är glada över sitt val av Takel. De beskriver hur personlig servicen var och hur trygga de kände sig genom hela processen.",
         fullText: "Tony och Katrin på Gadolinitvägen 3 är glada över sitt val av Takel som leverantör av solceller. De beskriver hur personlig servicen var och hur trygga de kände sig genom hela processen.",
         image: "/images/Takel_Solceller_Gadolinitvagen_Overblick_Med_Pool-600x600-1.webp",
-        altText: "Överblick av modern villa med pool och nya solceller på taket i Vaxholm."
+        altText: "Överblick av modern villa med pool i Vaxholm med ett tak integrerat med helt svarta premium-solceller och en ren, kabelfri installation utförd av Takel AB."
     },
     {
         title: "Dalstigen 5",
@@ -81,7 +81,7 @@ const installations = [
         excerpt: "Niclas och Marianne kunde inte vara nöjdare. De berättar hur det var att välja en lokal leverantör som verkligen bryr sig.",
         fullText: "Niclas och Marianne kunde inte vara nöjdare med sitt val av Takel som leverantör av solceller. De berättar hur det var att välja en lokal leverantör som verkligen bryr sig.",
         image: "/images/Takel_Solceller_Dalstigen_Resaro_Niclas_Marianne-600x600-1.webp",
-        altText: "Niclas och Marianne utanför sitt hus i Vaxholm som fått premiumsolceller från Takel."
+        altText: "Niclas och Marianne utanför sitt hus i Vaxholm som fått premiumsolceller med stilren och estetiskt dold kabeldragning monterade av Takel AB."
     }
 ];
 
