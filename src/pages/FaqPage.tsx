@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { generalFaqs } from '../data/generalFaq';
-import { ChevronDown, Helmet as HelmetIcon } from 'lucide-react'; // Fallback icon if no helmet
+import { ChevronDown } from 'lucide-react';
 
 export const FaqPage = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
