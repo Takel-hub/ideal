@@ -1,4 +1,5 @@
 import { Hero } from '../components/Hero';
+import { AboutUs } from '../components/AboutUs';
 import { Process } from '../components/Process';
 import { Installations } from '../components/Installations';
 import { Packages } from '../components/Packages';
@@ -18,7 +19,8 @@ export const HomePage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess, onSele
                 onOpenQuote={onOpenQuote}
                 onOpenCalculator={onOpenCalculator}
             />
-
+            
+            <AboutUs />
             <Process />
             <Installations />
             <Packages onSelectPackage={onSelectPackage} />
