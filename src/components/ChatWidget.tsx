@@ -104,7 +104,14 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
         };
         checkStatus();
         const interval = setInterval(checkStatus, 10000);
-        return () => clearInterval(interval);
+        
+        const handleOpenChat = () => setIsOpen(true);
+        window.addEventListener('open-chat', handleOpenChat);
+        
+        return () => {
+            clearInterval(interval);
+            window.removeEventListener('open-chat', handleOpenChat);
+        };
     }, []);
 
     const handleSend = () => {

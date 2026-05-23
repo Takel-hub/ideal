@@ -68,9 +68,12 @@ export const FaqPage = () => {
                     <p className="text-gray-600 mb-6">
                         Tveka inte att höra av dig till oss! Vi svarar gärna på alla dina frågor om solenergi.
                     </p>
-                    <a href="#kontakta-oss" className="inline-block bg-orange-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-700 transition-colors shadow-lg">
+                    <button 
+                        onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
+                        className="inline-block bg-orange-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-700 transition-colors shadow-lg"
+                    >
                         Kontakta oss
-                    </a>
+                    </button>
                 </div>
             </div>
         </main>
