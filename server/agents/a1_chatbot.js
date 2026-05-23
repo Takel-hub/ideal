@@ -19,6 +19,29 @@ async function handleChat(message) {
         };
     }
 
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    const callWithRetry = async (fn, maxRetries = 3, baseDelay = 1000) => {
+        for (let attempt = 1; attempt <= maxRetries; attempt++) {
+            try {
+                return await fn();
+            } catch (error) {
+                const status = error?.status || error?.response?.status;
+                const isTransient = status === 429 || status === 503 || status === 500 || 
+                                    error.message.includes('503') || error.message.includes('429') ||
+                                    error.message.includes('fetch failed');
+                
+                if (!isTransient || attempt === maxRetries) {
+                    throw error;
+                }
+                
+                const delay = baseDelay * Math.pow(2, attempt - 1);
+                console.warn(`A1: Gemini API transient error. Retrying in ${delay}ms... (Attempt ${attempt}/${maxRetries})`);
+                await sleep(delay);
+            }
+        }
+    };
+
     try {
         // Use 'gemini-flash-latest' which works while billing quota propagates
         const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
@@ -56,7 +79,7 @@ async function handleChat(message) {
         Användarens meddelande: ${message}
         `;
 
-        const result = await model.generateContent(systemPrompt);
+        const result = await callWithRetry(() => model.generateContent(systemPrompt));
         const response = await result.response;
         const text = response.text();
 
