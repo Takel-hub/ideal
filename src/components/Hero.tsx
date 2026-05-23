@@ -24,15 +24,15 @@ export const Hero = ({ onOpenQuote, onOpenCalculator }: HeroProps) => {
 
                 {/* Headlines */}
                 <h1 className="text-5xl md:text-7xl font-bold text-text leading-tight mb-6">
-                    Släpp in solens kraft i <span>ditt hem!</span>
+                    Solceller, Batteri & Laddbox för <span>Villor i Stockholm</span>
                 </h1>
 
                 <div className="space-y-4 mb-10">
                     <p className="text-2xl md:text-3xl font-bold text-orange-600">
-                        Spara 10 000-30 000 kr/år <span className="text-gray-600 font-normal">med solenergi</span>
+                        Spara 15 000–35 000 kr per år
                     </p>
-                    <p className="text-gray-500 text-lg">
-                        Säkra ditt Gröna Teknikavdrag för 2026. Få upp till 50% skattereduktion direkt på fakturan.
+                    <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+                        Snabb installation av ett lokalt team i Stockholmsområdet. Allt med Grönt Teknikavdrag.
                     </p>
                 </div>
 

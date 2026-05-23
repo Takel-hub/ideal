@@ -95,11 +95,14 @@ export const Packages = ({ onSelectPackage }: PackagesProps) => {
                         <p className="text-gray-600 mb-4 max-w-xl">
                             Att ladda elbilen hemma blir både billigare och smartare när du har solceller. Vi erbjuder installation av marknadsledande laddboxar som kan styras smart efter elpriset eller när solen skiner.
                         </p>
-                        <div className="flex flex-wrap gap-4 text-sm font-medium text-gray-700">
+                        <div className="flex flex-wrap gap-4 text-sm font-medium text-gray-700 mb-6">
                             <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-orange-500" /> Ladda med solel</span>
                             <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-orange-500" /> Styr efter timpris</span>
-                            <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-orange-500" /> 50% Grönt Avdrag</span>
+                            <span className="flex items-center gap-1"><Zap className="w-4 h-4 text-orange-500" /> 50% Grönt Teknikavdrag</span>
                         </div>
+                        <a href="/laddbox-stockholm" className="inline-flex items-center gap-2 text-orange-600 font-bold hover:text-orange-700 hover:underline">
+                            Läs mer om varför du ska ha laddbox <ArrowRight className="w-4 h-4" />
+                        </a>
                     </div>
 
                     <button 
