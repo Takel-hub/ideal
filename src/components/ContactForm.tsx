@@ -205,11 +205,12 @@ export const ContactForm = ({ onSuccess }: ContactFormProps) => {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-gray-700">Vad är din ungefärliga elförbrukning per år? (kWh)</label>
+                            <label htmlFor="consumption" className="text-sm font-bold text-gray-700">Årlig elförbrukning</label>
                             <select
+                                id="consumption"
                                 value={formData.consumption}
                                 onChange={e => setFormData({ ...formData, consumption: e.target.value })}
-                                className="w-full p-3 rounded-lg border border-gray-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all bg-white"
+                                className="w-full p-3 rounded-lg border border-gray-200 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all appearance-none bg-white"
                             >
                                 <option>T.ex. 15000</option>
                                 <option>Under 10 000</option>

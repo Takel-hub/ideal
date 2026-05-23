@@ -868,6 +868,7 @@ Stämmer detta?`;
                                 {/* Close Button for Pill */}
                                 <button
                                     onClick={handlePillClose}
+                                    aria-label="Stäng chatt"
                                     className="absolute -top-2 -right-2 bg-white border border-orange-100 shadow-sm rounded-full p-1 text-gray-400 hover:text-orange-600 hover:border-orange-200 transition-colors z-20"
                                 >
                                     <X className="w-4 h-4" />
@@ -885,6 +886,7 @@ Stämmer detta?`;
                         )}
                         <button
                             onClick={() => setIsOpen(true)}
+                            aria-label="Öppna chatt"
                             className="bg-orange-600 text-white p-4 rounded-full shadow-lg hover:bg-orange-700 transition-transform hover:scale-110 animate-in slide-in-from-bottom-4 duration-500"
                         >
                             <Bot className="w-8 h-8" />
@@ -922,6 +924,7 @@ Stämmer detta?`;
                         <div className="relative group">
                             <button
                                 onClick={handleClose}
+                                aria-label="Minimera chatt"
                                 className="bg-orange-700/50 hover:bg-orange-800/80 rounded-full p-2 text-white/90 hover:text-white transition-all shadow-sm group-hover:shadow-md"
                             >
                                 <X className="w-5 h-5" />
