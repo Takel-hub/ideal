@@ -131,5 +131,30 @@ export const growattArticles: ArticleContent[] = [
             }
         ],
         ctaText: 'Att räkna på stödtjänster och skattereduktioner kan kännas krångligt, men vi gör det enkelt. Hör av dig så kikar vi på vad din fastighet har för förutsättningar!'
+    },
+    {
+        id: 'vad-kostar-solceller-stockholm',
+        title: 'Vad kostar solceller för en villa i Stockholm 2026?',
+        intro: 'Att investera i solceller är ett av de smartaste besluten en stockholmsvillaägare kan göra idag – men vad kostar det egentligen? I den här guiden bryter vi ned priserna, förklarar vad som påverkar kostnaden och visar hur du räknar ut återbetalningstiden för just din villa.\n\n**Snabbfakta:** En genomsnittlig solcellsanläggning för en villa i Stockholm kostar 120 000–180 000 kr före Grönt Teknikavdrag och efter hamnar många på en nettokostnad runt 80 000–120 000 kr.',
+        sections: [
+            {
+                subtitle: 'Vad påverkar priset på solceller?',
+                content: 'Priset för en solcellsinstallation varierar utifrån flera faktorer. Här är de viktigaste:\n\n**1. Anläggningens storlek**\nDels är det beroende på hur många solceller som är lämpligt utifrån ert elbehov och utifrån ert taks förutsättningar, och dels hur mycket batterier som passar just er. För 2-3 år sedan var det vanligt med 20-30 solpaneler, om det fick plats på taket, men idag är det vanligare med 15-20 stycken och istället satsar fler på större batterilagring.\n\nVi har tagit fram tre olika alternativ som är vanliga och dessa utgår ifrån hur stor elförbrukning och hur stort tak ni har.\n\n*   **Startpaketet** är med 8 solpaneler och 5kWh batteri och passar det mindre hushållet. Priset för det inklusive allt är 81 845 kr efter Grönt Teknikavdrag.\n*   **Familjepaketet** är med 16 solceller och 10kWh batteri och är vårt vanligaste paket och passar de flesta villorna i Stockholmsområdet. Priset är 120 889 kr efter Grönt Teknikavdrag för två fastighetsägare.\n*   **Framtidssäkrad villa** är vårt stora paket som gör att du med 22 paneler förlänger tiden du kan använda solenergi till både huset och batteriet som är på 15kWh. Med detta paket har du en lösning som täcker de flesta medelstora och stora villors behov under lång tid av året. Priset för detta är 182 278 kr efter Grönt Teknikavdrag för två fastighetsägare.\n\n**2. Takets utformning**\nEtt tak med sydlig eller sydvästlig orientering ger bäst produktion och då framförallt under sommarhalvåret. Om du har gaveln i söderläge och en taklutning om max 20 grader ger det bättre produktion under hela året men eftersom du har det tak ni har så kommer vi ut och går igenom vad som är bäst för er. Självklart så ger komplicerade tak med flera vinklar och/eller takkupor en högre installationskostnaden och därför är det alltid bäst att på plats gå igenom just era förutsättningar.\n\n**3. Växelriktare (inverter)**\nDesto fler paneler/solceller du har desto större växelriktare behövs vilket även påverkar priset. Vi samarbetar med Growatt som funnits länge på marknaden och är de som är bäst på alla sätt, allt från att vara små och enkla att installera till att ge en sömlös integration med både batterier och deras elbilsladdare och har så lång garantitid som 10 år!'
+            },
+            {
+                subtitle: 'Grönt Teknikavdrag – så fungerar det för solceller',
+                content: 'Det viktiga här är att den som är köpare även är fastighetsägare och får då upp till 50 000 kr per person och år. Precis som med ROT-avdraget dras även Grönt Teknikavdraget direkt på fakturan av oss. I Grönt Teknikavdrag så räkna allt in, inte bara arbetskostnaden eller materialet, utan allt.\n\nLäs mer på [Skatteverkets regler för Grönt teknikavdrag](https://www.skatteverket.se/privat/fastigheterochbostad/gronteknik.4.676f4884175c97df4192860.html).\n\nPå solcellsdelen har Grönt Teknikavdraget sjunkit och är idag bara 15% medans det är 50% för lagringsdelen (batterierna) och laddbox för elbil. Vi har märkt att sedan Grönt Teknikavdrag för solceller sjönk till 15% har fler valt att kombinera solceller med ett batterilagring och även lägga till en elbilsladdare om planen är att skaffa hybrid eller elbil (om de inte redan har det). Även om lagringsdelen och laddboxar har 50% i Grönt Teknikavdrag så påverkar det ändå ekonomi mest, både inköpspris och minskad elräkning!\n\n**Batterilager** ökar självförsörjningsgraden från 30 % till 70 %+.\n**Laddbox** tillkommer ca 10 000–20 000 kr installerat. Möjliggör elbilsladdning på egenproducerad el.\n\nDe paket som vi presenterade tidigare innebär en kostnad på ca 80 000–180 000 kr, men ger maximal energioberoende och lägst driftkostnad över tid.'
+            },
+            {
+                subtitle: 'Återbetalningstid i Stockholm',
+                content: 'Stockholm har ca 1 800–1 900 soltimmar per år, vilket är tillräckligt för en god avkastning. Med ett elpris på 1,20–1,50 kr/kWh och nuvarande solcellspriser ser kalkylen ut så här:\n\n*   Produktion: 10 kWp × ~950 kWh/kWp ≈ 9 500 kWh/år\n*   Egenanvändning (ca 40–50 %): ~4 500 kWh × 1,35 kr = ~6 075 kr/år\n*   Försäljning av överskott: ~5 000 kWh × 0,60 kr = ~3 000 kr/år\n*   Total besparing: ca 9 000–12 000 kr/år → **Återbetalningstid: 9–12 år**'
+            },
+            {
+                subtitle: 'Hur går installationen till?',
+                content: 'Hos Takel följer vi alltid samma trygga process:\n\n1. Gratis besiktning och kalkyl\n2. Skräddarsydd offert – solceller, batteri och laddbox\n3. Tillståndsansökan hos elnätsbolag och ev. kommun\n4. Installation av certifierat team\n5. Driftsättning, test och genomgång\n6. Anmälan för nettodebitering och elcertifikat'
+            }
+        ],
+        faqs: [],
+        ctaText: 'Att investera i solceller och lagring är en trygg affär. Tveka inte att kontakta oss för ett hembesök eller en snabb kalkyl!'
     }
 ];

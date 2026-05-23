@@ -44,11 +44,14 @@ export const ArticlePage = ({ onOpenQuote, onQuoteSuccess }: ArticlePageProps) =
                             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
                                 {section.subtitle}
                             </h2>
-                            <div className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">
-                                {section.content.split('**').map((part, i) => 
-                                    i % 2 === 1 ? <strong key={i} className="text-gray-900 font-bold">{part}</strong> : part
-                                )}
-                            </div>
+                            <div 
+                                className="text-lg text-gray-700 leading-relaxed whitespace-pre-line" 
+                                dangerouslySetInnerHTML={{ 
+                                    __html: section.content
+                                        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-gray-900 font-bold">$1</strong>')
+                                        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-orange-600 underline hover:text-orange-800">$1</a>')
+                                }}
+                            />
                         </div>
                     ))}
                     
