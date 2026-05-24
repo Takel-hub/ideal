@@ -348,7 +348,15 @@ export const Calculator = ({ isOpen, onClose, onBook }: CalculatorProps) => {
 
                     <div className="mt-auto pt-8">
                         <button
-                            onClick={() => onBook({ consumption, panels, batterySize })}
+                            onClick={() => {
+                                (window as any).dataLayer = (window as any).dataLayer || [];
+                                (window as any).dataLayer.push({
+                                    'event': 'calculator_used',
+                                    'panels': panels,
+                                    'battery': batterySize
+                                });
+                                onBook({ consumption, panels, batterySize });
+                            }}
                             className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-6 rounded-xl shadow-md hover:shadow-lg transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
                         >
                             Boka hembesök

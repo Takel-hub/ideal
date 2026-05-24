@@ -120,6 +120,12 @@ export const QuoteModal = ({ isOpen, onClose, onSuccess, initialData, onOpenPriv
             });
 
             if (res.ok) {
+                // Track Conversion
+                (window as any).dataLayer = (window as any).dataLayer || [];
+                (window as any).dataLayer.push({
+                    'event': 'quote_requested',
+                    'consumption': formData.consumption
+                });
                 onSuccess(formData);
                 onClose();
             } else {

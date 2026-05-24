@@ -603,8 +603,17 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
                             <p>070-870 42 33</p>
                         `
                     });
+
+                    // Track Conversion
+                    (window as any).dataLayer = (window as any).dataLayer || [];
+                    (window as any).dataLayer.push({
+                        'event': 'booking_completed',
+                        'booking_type': 'email',
+                        'package': bookingData.package || 'none',
+                        'laddbox': bookingData.laddbox ? 'yes' : 'no'
+                    });
                     
-                    botResponse.text = "Fantastiskt! 🎉 Jag har skickat ditt intresse till Hans och du har också fått en kopia via mail. Vi hörs snart!";
+                    botResponse.text = "Tack! Jag har skickat ditt meddelande till Takel. De kommer att höra av sig till dig så snart som möjligt. Vi hörs snart!";
                     botResponse.choices = ['Stäng chatt'];
                     setBookingState('done');
                 }
@@ -788,6 +797,15 @@ Stämmer detta?`;
                         summary: `Hembesök: ${bookingData.name}`,
                         description: `Tel: ${bookingData.phone}\nAdress: ${bookingData.fullAddress}\nEmail: ${bookingData.email}${bookingData.package ? `\nIntresserad av paket: ${bookingData.package}` : ''}${bookingData.laddbox ? '\nÖnskar laddbox: Ja' : ''}`,
                         startTime: bookingData.time // Pass ISO string directly
+                    });
+
+                    // Track Conversion
+                    (window as any).dataLayer = (window as any).dataLayer || [];
+                    (window as any).dataLayer.push({
+                        'event': 'booking_completed',
+                        'booking_type': 'calendar',
+                        'package': bookingData.package || 'none',
+                        'laddbox': bookingData.laddbox ? 'yes' : 'no'
                     });
 
                     botResponse.text = "Fantastiskt! 🎉 Bokningen är bekräftad och jag har skickat ett mail till dig (och en kopia till Hans). Vi ses!";
