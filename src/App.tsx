@@ -8,6 +8,7 @@ import { QuoteModal } from './components/QuoteModal';
 import { Calculator } from './components/Calculator';
 import { PrivacyModal } from './components/PrivacyModal';
 import { CookieBanner } from './components/CookieBanner';
+import { SocialCarousel } from './components/SocialCarousel';
 
 import { HomePage } from './pages/HomePage';
 import { LocalLandingPage } from './pages/LocalLandingPage';
@@ -106,6 +107,7 @@ function App() {
                     } />
                 </Routes>
 
+                <SocialCarousel />
                 <Footer onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
                 <CookieBanner onOpenPrivacy={() => setIsPrivacyModalOpen(true)} />
             </div>
