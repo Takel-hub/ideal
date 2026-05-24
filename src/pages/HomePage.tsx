@@ -5,6 +5,7 @@ import { Process } from '../components/Process';
 import { Installations } from '../components/Installations';
 import { Packages } from '../components/Packages';
 import { ContactForm } from '../components/ContactForm';
+import { LiveStats } from '../components/LiveStats';
 
 interface HomePageProps {
     onOpenQuote: () => void;
@@ -29,6 +30,7 @@ export const HomePage = ({ onOpenQuote, onOpenCalculator, onQuoteSuccess, onSele
             <Process />
             <Installations />
             <Packages onSelectPackage={onSelectPackage} />
+            <LiveStats />
             <ContactForm onSuccess={onQuoteSuccess} />
         </main>
     );

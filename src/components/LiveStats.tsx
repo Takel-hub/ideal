@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Sun, Zap, BatteryCharging } from 'lucide-react';
 
 // Custom hook to animate numbers
