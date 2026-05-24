@@ -6,42 +6,42 @@ const socialPosts = [
         platform: 'instagram',
         image: '/images/Takel_Solceller_Gadolinitvagen_Overblick_Med_Pool-600x600-1.webp',
         link: 'https://www.instagram.com/takel.se/',
-        alt: 'Snygg svart solcellsinstallation på villatak med pool'
+        alt: 'Premiuminstallation av helsvarta solpaneler (All Black) på exklusiv villa med pool i Vaxholm, utförd av certifierade installatörer från Takel AB.'
     },
     {
         id: 2,
         platform: 'facebook',
         image: '/images/Takel-Solceller-Avstyckningsvagen-Jarfalla-Hans.webp',
         link: 'https://www.facebook.com/profile.php?id=100089265523459',
-        alt: 'Nöjd kund i Täby med nya solceller'
+        alt: 'Diskret och stilren montering av solceller på papptak i Järfälla. Kunden Hans visar stolt upp den rena installationen med dold kabeldragning från Takel AB.'
     },
     {
         id: 3,
         platform: 'instagram',
         image: '/images/Takel_Solceller_Dalstigen_Resaro_Niclas_Marianne-600x600-1.webp',
         link: 'https://www.instagram.com/takel.se/',
-        alt: 'Nöjda kunder Niclas och Marianne'
+        alt: 'Niclas och Marianne, nöjda solcellskunder på Resarö. Takel AB levererade en nyckelfärdig installation med marknadens starkaste garantier.'
     },
     {
         id: 4,
         platform: 'instagram',
         image: '/images/Takel_Solceller_Mandolinvagen_1_Skrattande_Dag__Eva-1-768x512.webp',
         link: 'https://www.instagram.com/takel.se/',
-        alt: 'Dag och Eva skrattar framför sitt hus'
+        alt: 'Dag och Eva i Järfälla njuter av sin nya solcellsanläggning och Growatt-batterilager. Trygg och snabb installation som sänker deras elkostnader.'
     },
     {
         id: 5,
         platform: 'facebook',
         image: '/images/Takel-Hemma-hos-Martin-768x788.webp',
         link: 'https://www.facebook.com/profile.php?id=100089265523459',
-        alt: 'Hemma hos Martin'
+        alt: 'Personligt hembesök för solcellsrådgivning hos Martin i Huddinge. Takel går noga igenom taket för att skräddarsy en optimal lösning för batteri och laddbox.'
     },
     {
         id: 6,
         platform: 'instagram',
         image: '/images/Takel_Solceller_Vasterskogsvagen_Tak3-600x600-1.webp',
         link: 'https://www.instagram.com/takel.se/',
-        alt: 'Solpaneler på taket Västerskogsvägen'
+        alt: 'Helsvarta premium-solceller på villa i Vaxholm. Estetiskt tilltalande design där de svarta panelerna smälter perfekt ihop med husets tak.'
     }
 ];
 
