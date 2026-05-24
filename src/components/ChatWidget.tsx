@@ -18,6 +18,7 @@ interface BookingData {
     city?: string;
     fullAddress?: string;
     package?: string | null;
+    laddbox?: boolean;
 }
 
 export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quoteData?: any; selectedPackage?: string | null; onOpenPrivacy?: () => void }) => {
@@ -74,12 +75,12 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
             const botMsg: Message = {
                 id: Date.now(),
                 sender: 'bot',
-                text: `Snyggt val! Du har valt paketet **${selectedPackage}**. Vill du boka in en tid för ett gratis hembesök direkt, eller vill du bara mejla oss så kontaktar vi dig?`,
-                choices: ['Boka hembesök', 'Mejla mig istället']
+                text: `Snyggt val! Du har valt paketet **${selectedPackage}**. Många passar även på att installera en smart laddbox för elbilen samtidigt för att utnyttja 50% Grönt Teknikavdrag. Vill du att vi räknar med en laddbox i offerten?`,
+                choices: ['Ja, inkludera laddbox', 'Nej, bara paketet']
             };
             setBookingData(prev => ({ ...prev, package: selectedPackage }));
             setMessages(prev => [...prev, botMsg]);
-            setBookingState('package_followup');
+            setBookingState('package_laddbox_offer');
         }
     }, [selectedPackage]);
 
@@ -396,7 +397,9 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
                 'solceller',
                 'fråga om solceller',
                 'nej tack',
-                'ja, visa tider'
+                'ja, visa tider',
+                'ja, inkludera laddbox',
+                'nej, bara paketet'
             ];
 
             if (protectedPhrases.includes(lowerInput)) {
@@ -473,7 +476,18 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
 
             // Booking Flow
             if (bookingState !== 'none' && bookingState !== 'done') {
-                if (input === 'Visa fler tider') {
+                if (bookingState === 'package_laddbox_offer') {
+                    if (lowerInput === 'ja, inkludera laddbox' || lowerInput.includes('ja')) {
+                        setBookingData({ ...bookingData, laddbox: true });
+                        botResponse.text = "Perfekt, vi lägger till en laddbox! Vill du boka in en tid för ett gratis hembesök direkt, eller vill du bara mejla oss så kontaktar vi dig?";
+                    } else {
+                        setBookingData({ ...bookingData, laddbox: false });
+                        botResponse.text = "Uppfattat, inga problem! Vill du boka in en tid för ett gratis hembesök direkt, eller vill du bara mejla oss så kontaktar vi dig?";
+                    }
+                    botResponse.choices = ['Boka hembesök', 'Mejla mig istället'];
+                    setBookingState('package_followup');
+                }
+                else if (input === 'Visa fler tider') {
                     // Legacy/Fallback
                     botResponse.text = "Använd kalendern ovan för att se alla tider.";
                 }
@@ -578,6 +592,7 @@ export const ChatWidget = ({ quoteData, selectedPackage, onOpenPrivacy }: { quot
                         body: `
                             <p>Hej!</p>
                             <p>Tack för ditt intresse av vårt solcellspaket: <strong>${bookingData.package}</strong>.</p>
+                            <p>Önskar laddbox: <strong>${bookingData.laddbox ? 'Ja' : 'Nej'}</strong></p>
                             <p>Vi på Takel kommer kontakta dig inom kort för att prata om nästa steg.</p>
                             <br>
                             <p>Med vänlig hälsning,</p>
@@ -771,7 +786,7 @@ Stämmer detta?`;
                     // Book Calendar
                     await callApi('/calendar/book', 'POST', {
                         summary: `Hembesök: ${bookingData.name}`,
-                        description: `Tel: ${bookingData.phone}\nAdress: ${bookingData.fullAddress}\nEmail: ${bookingData.email}`,
+                        description: `Tel: ${bookingData.phone}\nAdress: ${bookingData.fullAddress}\nEmail: ${bookingData.email}${bookingData.package ? `\nIntresserad av paket: ${bookingData.package}` : ''}${bookingData.laddbox ? '\nÖnskar laddbox: Ja' : ''}`,
                         startTime: bookingData.time // Pass ISO string directly
                     });
 
