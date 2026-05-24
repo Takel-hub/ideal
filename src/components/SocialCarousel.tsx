@@ -4,44 +4,44 @@ const socialPosts = [
     {
         id: 1,
         platform: 'instagram',
-        image: 'https://images.unsplash.com/photo-1509391366360-12ce1bb8283a?auto=format&fit=crop&w=600&q=80',
+        image: '/images/Takel_Solceller_Gadolinitvagen_Overblick_Med_Pool-600x600-1.webp',
         link: 'https://www.instagram.com/takel.se/',
-        alt: 'Snygg svart solcellsinstallation på villatak'
+        alt: 'Snygg svart solcellsinstallation på villatak med pool'
     },
     {
         id: 2,
         platform: 'facebook',
-        image: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80',
+        image: '/images/Takel-Solceller-Avstyckningsvagen-Jarfalla-Hans.webp',
         link: 'https://www.facebook.com/profile.php?id=100089265523459',
         alt: 'Nöjd kund i Täby med nya solceller'
     },
     {
         id: 3,
         platform: 'instagram',
-        image: 'https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&w=600&q=80',
+        image: '/images/Takel_Solceller_Dalstigen_Resaro_Niclas_Marianne-600x600-1.webp',
         link: 'https://www.instagram.com/takel.se/',
-        alt: 'Growatt batterilager installation i garage'
+        alt: 'Nöjda kunder Niclas och Marianne'
     },
     {
         id: 4,
         platform: 'instagram',
-        image: 'https://images.unsplash.com/photo-1548611716-3cefb46ad88e?auto=format&fit=crop&w=600&q=80',
+        image: '/images/Takel_Solceller_Mandolinvagen_1_Skrattande_Dag__Eva-1-768x512.webp',
         link: 'https://www.instagram.com/takel.se/',
-        alt: 'Elektriker som drar kablar snyggt och dolt'
+        alt: 'Dag och Eva skrattar framför sitt hus'
     },
     {
         id: 5,
         platform: 'facebook',
-        image: 'https://images.unsplash.com/photo-1664319409540-3b8c4c782782?auto=format&fit=crop&w=600&q=80',
+        image: '/images/Takel-Hemma-hos-Martin-768x788.webp',
         link: 'https://www.facebook.com/profile.php?id=100089265523459',
-        alt: 'Laddbox installation på garageuppfart'
+        alt: 'Hemma hos Martin'
     },
     {
         id: 6,
         platform: 'instagram',
-        image: 'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=600&q=80',
+        image: '/images/Takel_Solceller_Vasterskogsvagen_Tak3-600x600-1.webp',
         link: 'https://www.instagram.com/takel.se/',
-        alt: 'Solpaneler i solnedgång'
+        alt: 'Solpaneler på taket Västerskogsvägen'
     }
 ];
 
@@ -50,9 +50,9 @@ export const SocialCarousel = () => {
         <section className="py-20 bg-white overflow-hidden border-t border-gray-100">
             <div className="max-w-7xl mx-auto px-6 md:px-12 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Följ med upp på taket</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Hemma hos våra kunder</h2>
                     <p className="text-gray-600 max-w-2xl text-lg">
-                        Se våra senaste installationer och följ vår vardag. Vi är stolta över varenda panel vi lägger.
+                        Över 100 villaägare i Stockholm har redan valt oss. Se hur snyggt det blir i verkligheten och följ våra senaste installationer.
                     </p>
                 </div>
                 <div className="flex gap-6">
