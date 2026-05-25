@@ -28,6 +28,7 @@ export default async function handler(req, res) {
     return res.status(200).json(cache.data);
   }
 
+  try {
     const GROWATT_APP_KEY = process.env.GROWATT_API_KEY || '6eb6f069523055a339d71e5b1f6c88cc';
 
     let aggregatedData = {
