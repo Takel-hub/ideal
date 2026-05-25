@@ -1,5 +1,4 @@
 import axios from 'axios';
-import url from 'url';
 
 // Simple in-memory cache for Vercel Serverless
 // Note: In Vercel, memory cache might be cleared between cold starts, 
@@ -31,25 +30,7 @@ export default async function handler(req, res) {
 
   try {
     const GROWATT_APP_KEY = process.env.GROWATT_API_KEY || '00k14k9biwhvmc9678e412i40hhov7ai';
-    const FIXIE_URL = process.env.FIXIE_URL;
 
-    // Set up proxy configuration if Fixie is available
-    let axiosConfig = {};
-    if (FIXIE_URL) {
-      const fixieUrl = url.parse(FIXIE_URL);
-      const fixieAuth = fixieUrl.auth.split(':');
-      axiosConfig = {
-        proxy: {
-          protocol: 'http',
-          host: fixieUrl.hostname,
-          port: fixieUrl.port,
-          auth: {
-            username: fixieAuth[0],
-            password: fixieAuth[1]
-          }
-        }
-      };
-    }
 
     // TODO: When AppSecret is provided by the user, we will construct the signature here
     // const timestamp = Date.now();
@@ -58,7 +39,6 @@ export default async function handler(req, res) {
     /* 
     // REAL API CALL (Commented out until we have AppSecret and URL)
     const response = await axios.get('https://openapi.growatt.com/v1/plant/list', {
-      ...axiosConfig,
       headers: { 'token': GROWATT_APP_KEY }
     });
     */
@@ -80,7 +60,7 @@ export default async function handler(req, res) {
       timestamp: Date.now()
     };
 
-    console.log("Fetched new data from Growatt (via Proxy)");
+    console.log("Fetched new data from Growatt");
     return res.status(200).json(aggregatedData);
 
   } catch (error) {
