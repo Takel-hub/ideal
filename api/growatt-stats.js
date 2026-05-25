@@ -28,31 +28,47 @@ export default async function handler(req, res) {
     return res.status(200).json(cache.data);
   }
 
-  try {
-    const GROWATT_APP_KEY = process.env.GROWATT_API_KEY || '00k14k9biwhvmc9678e412i40hhov7ai';
+    const GROWATT_APP_KEY = process.env.GROWATT_API_KEY || '6eb6f069523055a339d71e5b1f6c88cc';
 
-
-    // TODO: When AppSecret is provided by the user, we will construct the signature here
-    // const timestamp = Date.now();
-    // const signature = generateGrowattSignature(GROWATT_APP_KEY, APP_SECRET, timestamp);
-
-    /* 
-    // REAL API CALL (Commented out until we have AppSecret and URL)
-    const response = await axios.get('https://openapi.growatt.com/v1/plant/list', {
-      headers: { 'token': GROWATT_APP_KEY }
-    });
-    */
-
-    // Simulated API Call for now (Takes 1.5s to simulate network)
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Simulated data based on 100+ customers
-    const aggregatedData = {
+    let aggregatedData = {
       success: true,
-      currentPowerKW: 524.5, // Just nu: 524 kW
-      totalEnergyKWH: 1254300, // Totalt: 1 254 300 kWh
-      todayEnergyKWH: 3450 // Idag: 3 450 kWh
+      currentPowerKW: 524.5,
+      totalEnergyKWH: 1254300,
+      todayEnergyKWH: 3450
     };
+
+    try {
+      // REAL API CALL (Customer API /v1/plant/list)
+      const response = await axios.get('https://openapi.growatt.com/v1/plant/list', {
+        headers: { 'token': GROWATT_APP_KEY },
+        timeout: 5000 // 5 seconds timeout
+      });
+
+      // If the API call is successful and returns data
+      if (response.data && response.data.error_code === 0 && response.data.data && response.data.data.plants) {
+        let totalPower = 0;
+        let totalEnergy = 0;
+        let todayEnergy = 0;
+        
+        response.data.data.plants.forEach(plant => {
+          totalPower += parseFloat(plant.currentPower || 0);
+          totalEnergy += parseFloat(plant.eTotal || 0);
+          todayEnergy += parseFloat(plant.eToday || 0);
+        });
+
+        aggregatedData = {
+          success: true,
+          currentPowerKW: Math.round(totalPower),
+          totalEnergyKWH: Math.round(totalEnergy),
+          todayEnergyKWH: Math.round(todayEnergy)
+        };
+        console.log("Successfully fetched LIVE data from Growatt!");
+      } else {
+        console.warn("Growatt API returned non-zero error code or missing data. Falling back to simulated data.", response.data);
+      }
+    } catch (apiError) {
+      console.warn("Growatt API request failed. Falling back to simulated data.", apiError.message);
+    }
 
     // Update Cache
     cache = {
