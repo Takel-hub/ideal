@@ -1,0 +1,5 @@
+# Antigravity Rules for Takel.se
+
+1. **Premium UI/UX First:** Use vibrant, harmonious color palettes, modern typography, and micro-animations instead of generic, flat designs.
+2. **Strict Security:** Never hardcode private API keys or secrets in the codebase. Always architect the system to use environment variables (.env).
+3. **Swedish Copywriting:** Write all visible frontend text in Swedish with a professional, trustworthy tone optimized for conversions.
